@@ -10,6 +10,18 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+model Boardgame {
+  id            Int      @id @default(autoincrement())
+  name          String   @unique
+  minPlayers    Int
+  maxPlayers    Int
+  recPlayers    Int
+  minPlaytime   Int
+  maxPlaytime   Int
+  avgPlaytime   Int
+  age           Int
+}
+
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
