@@ -1,7 +1,7 @@
 import { Box, Grid } from '@/styles';
 import Head from 'next/head';
 import { FC, useEffect, useRef, useState } from 'react';
-import { StyledLayout } from '.';
+import { StyledLayout, windowSize } from '.';
 
 type Props = {
   title?: string;
@@ -12,20 +12,21 @@ type Props = {
 export const Layout: FC<Props> = ({ title, children, loading }) => {
   let [menu, setMenu] = useState<string>('default');
 
-  const [windowSize, setWindowSize] = useState<Array<number>>([100, 100]);
+  const [windowSize, setWindowSize] = useState<windowSize>({ height: 100, width: 100 });
 
   useEffect(() => {
     // On mount
-    setWindowSize([window.innerWidth, window.innerHeight]);
+    setWindowSize({ height: window.innerWidth, width: window.innerHeight });
+    console.log('Even loggen');
 
     // Watch
     const handleWindowResize = () => {
-      setWindowSize([window.innerWidth, window.innerHeight]);
+      setWindowSize({ height: window.innerWidth, width: window.innerHeight });
     };
     window.addEventListener('resize', handleWindowResize);
-    // return () => {
-    //   window.removeEventListener('resize', handleWindowResize);
-    // };
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
   }, []);
 
   return (
@@ -43,11 +44,16 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
       </Head>
       <main>
         <StyledLayout windowSize={windowSize} variant={menu}>
-          <Grid gridArea={'navigation'} backgroundColor={'yellow'}>
+          <Navigation gridArea={'navigation'} />
+          <div>b</div>
+          <div>c</div>
+          <div>d</div>
+          {/* <Grid gridArea={'navigation'} backgroundColor={'yellow'}>
             Navigation
           </Grid>
-          {menu != 'hamburger' && (
+          {menu != 'default' && (
             <Grid gridArea={'hamburger'} backgroundColor={'lightblue'}>
+              <button onClick={() => (menu == 'default' ? setMenu('hamburger') : setMenu('default'))}>change</button>
               <div>hamburger</div>
               <div>Content</div>
             </Grid>
@@ -56,7 +62,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
             <button onClick={() => (menu == 'default' ? setMenu('hamburger') : setMenu('default'))}>change</button>
             <div>{children}</div>
             <div>{children}</div>
-          </Grid>
+          </Grid> */}
         </StyledLayout>
       </main>
     </>

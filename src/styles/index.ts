@@ -1,4 +1,5 @@
 export * from './box.style';
+export * from './breakpoints.style';
 export * from './flex.style';
 export * from './global.style';
 export * from './grid.style';

@@ -1,34 +1,69 @@
 import styled from 'styled-components';
 import { type GridProps } from 'styled-system';
 import { BoxProps, Grid } from '@/styles';
+import { windowSizeType } from '.';
 
 interface StyledLayoutProps extends BoxProps, GridProps {
-  windowSize: Array<number>;
+  windowSize: windowSizeType;
   variant: string;
 }
 export const StyledLayout = styled(Grid)<StyledLayoutProps>`
-  height: ${({ windowSize }) => windowSize[1]}px;
-  width: ${({ windowSize }) => windowSize[0]}px;
-  grid-template-columns: minmax(300px, 500px) auto;
-  grid-template-rows: 60px 1fr 60px;
-  /* grid-template-areas:
-    'navigation content'
-    'navigation content'
-    'header header'; */
+  min-height: ${({ windowSize }) => windowSize.height}px;
+  min-width: ${({ windowSize }) => windowSize.width}px;
 
-  ${({ variant, theme }) =>
-    ({
-      default: `
+  @media only screen and (min-width: ${({ theme }) => theme.breakingPoint.tablet}) {
+    ${({ variant, windowSize, theme }) =>
+      ({
+        default: `
+        grid-template-columns: 1fr;
+        grid-template-rows: ${theme.size.navHeight} 1fr;
         grid-template-areas:
-          'hamburger content'
-          'hamburger content'
-          'navigation navigation';
+          'navigation'
+          'content';
       `,
-      hamburger: `
+        hamburger: `
+        grid-template-columns: 250px 1fr;
+        grid-template-rows: ${theme.size.navHeight} 1fr;
         grid-template-areas:
-          'content content'
-          'content content'
-          'navigation navigation';
+          'navigation navigation'
+          'hamburger content';
     `,
-    }[variant])}
+      }[variant])}
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakingPoint.tablet}) {
+    ${({ variant, windowSize, theme }) =>
+      ({
+        default: `
+        grid-template-columns: ${theme.size.navHeight} 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+          'navigation content';
+      `,
+        hamburger: `
+        grid-template-columns: ${theme.size.navHeight} 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+          'navigation hamburger';
+    `,
+      }[variant])}
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakingPoint.phone}) {
+    ${({ variant, windowSize, theme }) =>
+      ({
+        default: `
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr ${theme.size.navHeight};
+        grid-template-areas:
+          'navigation content';
+      `,
+        hamburger: `
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr ${theme.size.navHeight};
+        grid-template-areas:
+          'navigation hamburger';
+    `,
+      }[variant])}
+  }
 `;

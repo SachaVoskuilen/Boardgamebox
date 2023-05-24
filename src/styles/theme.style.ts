@@ -1,4 +1,33 @@
+import { defaultBreakingPoints } from '.';
+
+interface StartTheme {
+  breakingPoint: {
+    phone: number;
+    tablet: number;
+    smallScreen: number;
+    desktop: number;
+  };
+  size: {
+    navHeight: string;
+  };
+  fontSize: {
+    normal: string;
+  };
+  colors: {};
+}
+
+const defaultSizes = {
+  navHeight: '60px',
+};
+
+const defaultFontSizes = {
+  normal: '20px',
+};
+
 export const DefaultTheme = {
+  breakingPoint: defaultBreakingPoints,
+  size: defaultSizes,
+  fontSize: defaultFontSizes,
   colors: {
     black: '#000e1a',
     white: '#ffffff',
@@ -10,7 +39,10 @@ export const DefaultTheme = {
   },
 };
 
-export const SecondaryTheme = {
+export const SecondaryTheme: StartTheme = {
+  breakingPoint: defaultBreakingPoints,
+  size: defaultSizes,
+  fontSize: defaultFontSizes,
   colors: {
     black: '#000e1a',
     white: '#ffffff',

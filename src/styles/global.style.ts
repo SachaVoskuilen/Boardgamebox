@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     background: ${({ theme }) => theme.colors.primaryColor};
     font-family: 'Nunito', sans-serif;
-    font-size: 30px;
+    font-size: ${({ theme }) => theme.fontSize.normal};
   }
 
 `;
