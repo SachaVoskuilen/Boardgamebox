@@ -9,6 +9,7 @@ import type {
   ShadowProps,
 } from 'styled-system';
 import { border, color, space, layout, background, position, shadow } from 'styled-system';
+import { windowSizeType } from './windowSize.type';
 
 export interface MainProps
   extends ColorProps,
@@ -17,9 +18,13 @@ export interface MainProps
     BackgroundProps,
     PositionProps,
     ShadowProps,
-    BorderProps {}
+    BorderProps {
+  windowSize: windowSizeType;
+}
 
 export const StyledMain = styled.main<MainProps>`
+  min-height: 100%;
+  min-width: 100%;
   background-color: ${({ theme }) => theme.colors.primaryColor};
   ${color};
   ${space};

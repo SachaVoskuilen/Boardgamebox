@@ -4,16 +4,15 @@ import { BoxProps, Grid, device } from '@/styles';
 import { windowSizeType } from '.';
 
 interface StyledLayoutProps extends BoxProps, GridProps {
-  windowSize: windowSizeType;
   variant: string;
 }
 
 export const StyledLayout = styled(Grid)<StyledLayoutProps>`
-  height: 100vh;
-  max-height: -webkit-fill-available;
-
-  width: 100vw;
-  max-width: -webkit-fill-available;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
   ${({ variant, theme }) =>
     ({
