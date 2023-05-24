@@ -1,8 +1,7 @@
-import { Box, Flex, Grid, defaultBreakingPoints } from '@/styles';
+import { Grid, defaultBreakingPoints } from '@/styles';
 import Head from 'next/head';
-import { FC, useEffect, useRef, useState } from 'react';
-import { StyledLayout, windowSizeType } from '.';
-import { Navigation } from '../Navigation';
+import { FC, useEffect, useState } from 'react';
+import { StyledLayout, StyledMain, windowSizeType } from '.';
 
 type Props = {
   title?: string;
@@ -11,7 +10,7 @@ type Props = {
 };
 
 export const Layout: FC<Props> = ({ title, children, loading }) => {
-  let [menu, setMenu] = useState<string>('default');
+  const [menu, setMenu] = useState<string>('default');
 
   const [windowSize, setWindowSize] = useState<windowSizeType>({ height: 100, width: 100 });
 
@@ -42,7 +41,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
           href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
         />
       </Head>
-      <main>
+      <StyledMain>
         {windowSize.width >= defaultBreakingPoints.laptop ? (
           <StyledLayout windowSize={windowSize} variant={menu}>
             <Grid gridArea={'navigation'} backgroundColor={'yellow'}>
@@ -59,7 +58,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
                 <div>Content</div>
               </Grid>
             )}
-            <Grid gridArea={'content'} backgroundColor={'green'}>
+            <Grid gridArea={'content'}>
               <div>computer</div>
               <div>{children}</div>
             </Grid>
@@ -87,7 +86,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
             )}
           </StyledLayout>
         )}
-      </main>
+      </StyledMain>
     </>
   );
 };

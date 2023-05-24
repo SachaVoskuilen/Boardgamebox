@@ -7,6 +7,7 @@ interface StyledLayoutProps extends BoxProps, GridProps {
   windowSize: windowSizeType;
   variant: string;
 }
+
 export const StyledLayout = styled(Grid)<StyledLayoutProps>`
   height: 100vh;
   max-height: -webkit-fill-available;
@@ -28,22 +29,6 @@ export const StyledLayout = styled(Grid)<StyledLayoutProps>`
     `,
     }[variant])}
 
-  @media ${device.tablet} {
-    ${({ variant, theme }) =>
-      ({
-        default: `
-          grid-template-columns: ${theme.size.navHeight} 1fr;
-          grid-template-rows: 1fr;
-          grid-template-areas: 'navigation content';
-      `,
-        hamburger: `
-          grid-template-columns: ${theme.size.navHeight} 1fr;
-          grid-template-rows: 1fr;
-          grid-template-areas: 'navigation hamburger';
-    `,
-      }[variant])}
-  }
-
   @media ${device.laptop} {
     ${({ variant, theme }) =>
       ({
@@ -58,9 +43,25 @@ export const StyledLayout = styled(Grid)<StyledLayoutProps>`
           grid-template-columns: 250px 1fr;
           grid-template-rows: ${theme.size.navHeight} 1fr;
           grid-template-areas:
-            'hamburger navigation'
+            'navigation navigation'
             'hamburger content';
     `,
       }[variant])}
   }
 `;
+
+// @media ${device.tablet} {
+//   ${({ variant, theme }) =>
+//     ({
+//       default: `
+//         grid-template-columns: ${theme.size.navHeight} 1fr;
+//         grid-template-rows: 1fr;
+//         grid-template-areas: 'navigation content';
+//     `,
+//       hamburger: `
+//         grid-template-columns: ${theme.size.navHeight} 1fr;
+//         grid-template-rows: 1fr;
+//         grid-template-areas: 'navigation hamburger';
+//   `,
+//     }[variant])}
+// }

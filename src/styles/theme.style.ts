@@ -1,19 +1,14 @@
 import { defaultBreakingPoints } from '.';
 
 interface StartTheme {
-  breakingPoint: {
-    phone: number;
-    tablet: number;
-    smallScreen: number;
-    desktop: number;
-  };
+  breakingPoint: object;
   size: {
     navHeight: string;
   };
   fontSize: {
     normal: string;
   };
-  colors: {};
+  colors: object;
 }
 
 const defaultSizes = {
@@ -24,7 +19,7 @@ const defaultFontSizes = {
   normal: '20px',
 };
 
-export const DefaultTheme = {
+export const DefaultTheme: StartTheme = {
   breakingPoint: defaultBreakingPoints,
   size: defaultSizes,
   fontSize: defaultFontSizes,
