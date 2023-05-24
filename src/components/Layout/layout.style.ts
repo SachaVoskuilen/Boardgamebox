@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { type GridProps } from 'styled-system';
-import { BoxProps, Grid } from '@/styles';
+import { BoxProps, Grid, device } from '@/styles';
 import { windowSizeType } from '.';
 
 interface StyledLayoutProps extends BoxProps, GridProps {
@@ -8,61 +8,58 @@ interface StyledLayoutProps extends BoxProps, GridProps {
   variant: string;
 }
 export const StyledLayout = styled(Grid)<StyledLayoutProps>`
-  min-height: ${({ windowSize }) => windowSize.height}px;
-  min-width: ${({ windowSize }) => windowSize.width}px;
+  height: 100vh;
+  max-height: -webkit-fill-available;
 
-  @media only screen and (min-width: ${({ theme }) => theme.breakingPoint.tablet}) {
-    ${({ variant, windowSize, theme }) =>
+  width: 100vw;
+  max-width: -webkit-fill-available;
+
+  ${({ variant, theme }) =>
+    ({
+      default: `
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr ${theme.size.navHeight};
+        grid-template-areas: 'content' 'navigation';
+      `,
+      hamburger: `
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr ${theme.size.navHeight};
+        grid-template-areas: 'hamburger' 'navigation';
+    `,
+    }[variant])}
+
+  @media ${device.tablet} {
+    ${({ variant, theme }) =>
       ({
         default: `
-        grid-template-columns: 1fr;
-        grid-template-rows: ${theme.size.navHeight} 1fr;
-        grid-template-areas:
-          'navigation'
-          'content';
+          grid-template-columns: ${theme.size.navHeight} 1fr;
+          grid-template-rows: 1fr;
+          grid-template-areas: 'navigation content';
       `,
         hamburger: `
-        grid-template-columns: 250px 1fr;
-        grid-template-rows: ${theme.size.navHeight} 1fr;
-        grid-template-areas:
-          'navigation navigation'
-          'hamburger content';
+          grid-template-columns: ${theme.size.navHeight} 1fr;
+          grid-template-rows: 1fr;
+          grid-template-areas: 'navigation hamburger';
     `,
       }[variant])}
   }
 
-  @media only screen and (max-width: ${({ theme }) => theme.breakingPoint.tablet}) {
-    ${({ variant, windowSize, theme }) =>
+  @media ${device.laptop} {
+    ${({ variant, theme }) =>
       ({
         default: `
-        grid-template-columns: ${theme.size.navHeight} 1fr;
-        grid-template-rows: 1fr;
-        grid-template-areas:
-          'navigation content';
+          grid-template-columns: 1fr;
+          grid-template-rows: ${theme.size.navHeight} 1fr;
+          grid-template-areas:
+            'navigation'
+            'content';
       `,
         hamburger: `
-        grid-template-columns: ${theme.size.navHeight} 1fr;
-        grid-template-rows: 1fr;
-        grid-template-areas:
-          'navigation hamburger';
-    `,
-      }[variant])}
-  }
-
-  @media only screen and (max-width: ${({ theme }) => theme.breakingPoint.phone}) {
-    ${({ variant, windowSize, theme }) =>
-      ({
-        default: `
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr ${theme.size.navHeight};
-        grid-template-areas:
-          'navigation content';
-      `,
-        hamburger: `
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr ${theme.size.navHeight};
-        grid-template-areas:
-          'navigation hamburger';
+          grid-template-columns: 250px 1fr;
+          grid-template-rows: ${theme.size.navHeight} 1fr;
+          grid-template-areas:
+            'hamburger navigation'
+            'hamburger content';
     `,
       }[variant])}
   }

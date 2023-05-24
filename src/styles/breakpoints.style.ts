@@ -1,6 +1,9 @@
 export const defaultBreakingPoints = {
-  phone: 480,
+  mobileS: 320,
+  mobileM: 375,
+  mobileL: 425,
   tablet: 768,
-  smallScreen: 1024,
-  desktop: 1200,
+  laptop: 1024,
+  laptopL: 1440,
+  desktop: 2560,
 };

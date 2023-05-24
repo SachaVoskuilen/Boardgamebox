@@ -1,7 +1,8 @@
-import { Box, Grid } from '@/styles';
+import { Box, Flex, Grid, defaultBreakingPoints } from '@/styles';
 import Head from 'next/head';
 import { FC, useEffect, useRef, useState } from 'react';
-import { StyledLayout, windowSize } from '.';
+import { StyledLayout, windowSizeType } from '.';
+import { Navigation } from '../Navigation';
 
 type Props = {
   title?: string;
@@ -12,16 +13,15 @@ type Props = {
 export const Layout: FC<Props> = ({ title, children, loading }) => {
   let [menu, setMenu] = useState<string>('default');
 
-  const [windowSize, setWindowSize] = useState<windowSize>({ height: 100, width: 100 });
+  const [windowSize, setWindowSize] = useState<windowSizeType>({ height: 100, width: 100 });
 
   useEffect(() => {
     // On mount
-    setWindowSize({ height: window.innerWidth, width: window.innerHeight });
-    console.log('Even loggen');
+    setWindowSize({ height: window.innerHeight, width: window.innerWidth });
 
     // Watch
     const handleWindowResize = () => {
-      setWindowSize({ height: window.innerWidth, width: window.innerHeight });
+      setWindowSize({ height: window.innerHeight, width: window.innerWidth });
     };
     window.addEventListener('resize', handleWindowResize);
     return () => {
@@ -43,27 +43,50 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
         />
       </Head>
       <main>
-        <StyledLayout windowSize={windowSize} variant={menu}>
-          <Navigation gridArea={'navigation'} />
-          <div>b</div>
-          <div>c</div>
-          <div>d</div>
-          {/* <Grid gridArea={'navigation'} backgroundColor={'yellow'}>
-            Navigation
-          </Grid>
-          {menu != 'default' && (
-            <Grid gridArea={'hamburger'} backgroundColor={'lightblue'}>
-              <button onClick={() => (menu == 'default' ? setMenu('hamburger') : setMenu('default'))}>change</button>
-              <div>hamburger</div>
-              <div>Content</div>
+        {windowSize.width >= defaultBreakingPoints.laptop ? (
+          <StyledLayout windowSize={windowSize} variant={menu}>
+            <Grid gridArea={'navigation'} backgroundColor={'yellow'}>
+              <button
+                onClick={() => (menu == 'default' ? setMenu('hamburger') : setMenu('default'))}
+                style={{ maxWidth: '500px' }}
+              >
+                change
+              </button>
             </Grid>
-          )}
-          <Grid gridArea={'content'}>
-            <button onClick={() => (menu == 'default' ? setMenu('hamburger') : setMenu('default'))}>change</button>
-            <div>{children}</div>
-            <div>{children}</div>
-          </Grid> */}
-        </StyledLayout>
+            {menu != 'default' && (
+              <Grid gridArea={'hamburger'} backgroundColor={'lightblue'}>
+                <div>hamburger</div>
+                <div>Content</div>
+              </Grid>
+            )}
+            <Grid gridArea={'content'} backgroundColor={'green'}>
+              <div>computer</div>
+              <div>{children}</div>
+            </Grid>
+          </StyledLayout>
+        ) : (
+          <StyledLayout windowSize={windowSize} variant={menu}>
+            <Grid gridArea={'navigation'} backgroundColor={'yellow'}>
+              <button
+                onClick={() => (menu == 'default' ? setMenu('hamburger') : setMenu('default'))}
+                style={{ maxWidth: '500px' }}
+              >
+                change
+              </button>
+            </Grid>
+            {menu != 'default' ? (
+              <Grid gridArea={'hamburger'} backgroundColor={'lightblue'}>
+                <div>hamburger</div>
+                <div>Content</div>
+              </Grid>
+            ) : (
+              <Grid gridArea={'content'}>
+                <div>mobile</div>
+                <div>{children}</div>
+              </Grid>
+            )}
+          </StyledLayout>
+        )}
       </main>
     </>
   );
