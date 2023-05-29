@@ -13,6 +13,7 @@ interface StartTheme {
 
 const defaultSizes = {
   navHeight: '60px',
+  hamburgerWidth: '250px',
 };
 
 const defaultFontSizes = {
@@ -24,13 +25,16 @@ export const DefaultTheme: StartTheme = {
   size: defaultSizes,
   fontSize: defaultFontSizes,
   colors: {
-    black: '#000e1a',
+    black: '#000000',
+    gray: '#666666',
+    lightGray: '#E7E7E7',
     white: '#ffffff',
-    gray: '#444444',
-    mediumGray: '#888888',
-    lightGray: '#E1E1E1',
+
     primaryColor: '#FFAA00',
     secondaryColor: '#FF7B00',
+
+    primaryBackgroundColor: '#ffffff',
+    secondaryBackgroundColor: '#ffffff',
   },
 };
 

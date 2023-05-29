@@ -1,9 +1,16 @@
-import { Grid, defaultBreakingPoints } from '@/styles';
+import { defaultBreakingPoints } from '@/styles';
 import Head from 'next/head';
 import { FC, useEffect, useState } from 'react';
-import { Content, StyledLayout, StyledMain, windowSizeType } from '.';
+import {
+  Scrollable,
+  GridContentStyle,
+  GridHamburgerStyle,
+  GridNavigationStyle,
+  StyledLayout,
+  StyledMain,
+  windowSizeType,
+} from '.';
 import { Navigation } from '../Navigation';
-import { GridContentBlockStyle } from './GridContentBlock.style';
 
 type Props = {
   title?: string;
@@ -47,41 +54,41 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
       <StyledMain windowSize={windowSize}>
         {windowSize.width >= defaultBreakingPoints.laptop ? (
           <StyledLayout variant={menu}>
-            <Grid gridArea={'navigation'}>
-              <Navigation menu={menu} setMenu={setMenu} />
-            </Grid>
+            <GridNavigationStyle>
+              <Navigation menu={menu} setMenu={setMenu} windowSize={windowSize} />
+            </GridNavigationStyle>
             {menu != 'default' && (
-              <Grid gridArea={'hamburger'} backgroundColor={'lightblue'}>
+              <GridHamburgerStyle>
                 <div>hamburger</div>
                 <div>Content</div>
-              </Grid>
+              </GridHamburgerStyle>
             )}
-            <GridContentBlockStyle>
-              <Content>
+            <GridContentStyle>
+              <Scrollable>
                 <div>computer</div>
                 <div>{children}</div>
                 <div style={{ height: '1000px' }}>iets</div>
-              </Content>
-            </GridContentBlockStyle>
+              </Scrollable>
+            </GridContentStyle>
           </StyledLayout>
         ) : (
           <StyledLayout variant={menu}>
-            <Grid gridArea={'navigation'}>
-              <Navigation menu={menu} setMenu={setMenu} />
-            </Grid>
+            <GridNavigationStyle>
+              <Navigation menu={menu} setMenu={setMenu} windowSize={windowSize} />
+            </GridNavigationStyle>
             {menu != 'default' ? (
-              <Grid gridArea={'hamburger'} backgroundColor={'lightblue'}>
+              <GridHamburgerStyle>
                 <div>hamburger</div>
                 <div>Content</div>
-              </Grid>
+              </GridHamburgerStyle>
             ) : (
-              <GridContentBlockStyle>
-                <Content>
+              <GridContentStyle>
+                <Scrollable>
                   <div>computer</div>
                   <div>{children}</div>
                   <div style={{ height: '1000px' }}>iets</div>
-                </Content>
-              </GridContentBlockStyle>
+                </Scrollable>
+              </GridContentStyle>
             )}
           </StyledLayout>
         )}

@@ -3,7 +3,7 @@ import { type Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 
 import { ThemeProvider } from 'styled-components';
-import { DefaultTheme, GlobalStyle, SecondaryTheme } from '@/styles';
+import { DefaultTheme, GlobalStyle } from '@/styles';
 
 const MyApp: AppType<{ session: Session | null }> = ({ Component, pageProps: { session, ...pageProps } }) => {
   return (
