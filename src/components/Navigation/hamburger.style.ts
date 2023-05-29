@@ -12,5 +12,6 @@ export const StyledHamburger = styled(Flex)`
     justify-content: center;
     align-items: center;
     height: ${({ theme }) => theme.sizes.navHeight};
+    box-shadow: inset -1px -1px 5px 0;
   }
 `;
