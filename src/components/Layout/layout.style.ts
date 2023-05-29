@@ -17,12 +17,12 @@ export const StyledLayout = styled(Grid)<StyledLayoutProps>`
     ({
       default: `
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr ${theme.size.navHeight};
+        grid-template-rows: 1fr ${theme.sizes.navHeight};
         grid-template-areas: 'content' 'navigation';
       `,
       hamburger: `
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr ${theme.size.navHeight};
+        grid-template-rows: 1fr ${theme.sizes.navHeight};
         grid-template-areas: 'hamburger' 'navigation';
     `,
     }[variant])}
@@ -32,14 +32,14 @@ export const StyledLayout = styled(Grid)<StyledLayoutProps>`
       ({
         default: `
           grid-template-columns: 1fr;
-          grid-template-rows: ${theme.size.navHeight} 1fr;
+          grid-template-rows: ${theme.sizes.navHeight} 1fr;
           grid-template-areas:
             'navigation'
             'content';
       `,
         hamburger: `
-          grid-template-columns: ${theme.size.hamburgerWidth} 1fr;
-          grid-template-rows: ${theme.size.navHeight} 1fr;
+          grid-template-columns: ${theme.sizes.hamburgerWidth} 1fr;
+          grid-template-rows: ${theme.sizes.navHeight} 1fr;
           grid-template-areas:
             'navigation navigation'
             'hamburger content';

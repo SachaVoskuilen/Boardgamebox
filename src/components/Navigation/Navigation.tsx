@@ -4,8 +4,9 @@ import { NavigationLogo, NavigationStyle, NavigationType } from '.';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faHamburger, faHeart, faHouse, faRightFromBracket, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import { FC } from 'react';
 
-export const Navigation = ({ menu, setMenu, windowSize }: NavigationType) => {
+export const Navigation: FC<NavigationType> = ({ menu, setMenu, windowSize }: NavigationType) => {
   return (
     <Box>
       {windowSize.width >= defaultBreakingPoints.laptop ? (

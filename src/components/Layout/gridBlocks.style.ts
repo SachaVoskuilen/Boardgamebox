@@ -7,7 +7,6 @@ export const GridNavigationStyle = styled(Grid)`
 
 export const GridHamburgerStyle = styled(Grid)`
   grid-area: hamburger;
-  background-color: lightcoral;
 `;
 
 export const GridContentStyle = styled(Grid)`

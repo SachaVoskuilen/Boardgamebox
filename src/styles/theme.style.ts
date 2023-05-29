@@ -1,11 +1,11 @@
 import { defaultBreakingPoints } from '.';
 
 interface StartTheme {
-  breakingPoint: object;
-  size: {
+  breakingPoints: object;
+  sizes: {
     navHeight: string;
   };
-  fontSize: {
+  fontSizes: {
     normal: string;
   };
   colors: object;
@@ -21,9 +21,9 @@ const defaultFontSizes = {
 };
 
 export const DefaultTheme: StartTheme = {
-  breakingPoint: defaultBreakingPoints,
-  size: defaultSizes,
-  fontSize: defaultFontSizes,
+  breakingPoints: defaultBreakingPoints,
+  sizes: defaultSizes,
+  fontSizes: defaultFontSizes,
   colors: {
     black: '#000000',
     gray: '#666666',
@@ -34,14 +34,14 @@ export const DefaultTheme: StartTheme = {
     secondaryColor: '#FF7B00',
 
     primaryBackgroundColor: '#ffffff',
-    secondaryBackgroundColor: '#ffffff',
+    secondaryBackgroundColor: '#fff9ee',
   },
 };
 
 export const SecondaryTheme: StartTheme = {
-  breakingPoint: defaultBreakingPoints,
-  size: defaultSizes,
-  fontSize: defaultFontSizes,
+  breakingPoints: defaultBreakingPoints,
+  sizes: defaultSizes,
+  fontSizes: defaultFontSizes,
   colors: {
     black: '#000e1a',
     white: '#ffffff',

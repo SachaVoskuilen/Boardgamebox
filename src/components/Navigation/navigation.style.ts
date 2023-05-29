@@ -8,7 +8,7 @@ interface NavigationStyleType {
 export const NavigationStyle = styled(Flex)<NavigationStyleType>`
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
   height: 100%;
-  min-width: 100%;
+  width: 100%;
   flex-direction: row;
 
   ${({ variant }) =>

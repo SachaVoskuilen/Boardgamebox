@@ -10,7 +10,7 @@ import {
   StyledMain,
   windowSizeType,
 } from '.';
-import { Navigation } from '../Navigation';
+import { HamburgerMenu, Navigation } from '../Navigation';
 
 type Props = {
   title?: string;
@@ -59,8 +59,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
             </GridNavigationStyle>
             {menu != 'default' && (
               <GridHamburgerStyle>
-                <div>hamburger</div>
-                <div>Content</div>
+                <HamburgerMenu />
               </GridHamburgerStyle>
             )}
             <GridContentStyle>
@@ -78,8 +77,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
             </GridNavigationStyle>
             {menu != 'default' ? (
               <GridHamburgerStyle>
-                <div>hamburger</div>
-                <div>Content</div>
+                <HamburgerMenu />
               </GridHamburgerStyle>
             ) : (
               <GridContentStyle>
