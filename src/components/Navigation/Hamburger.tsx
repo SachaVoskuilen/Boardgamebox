@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { StyledHamburger } from '.';
 
-export const HamburgerMenu: FC<{}> = ({}) => {
+export const HamburgerMenu: FC = () => {
   return (
     <StyledHamburger>
       <Link href={'/owned'}>

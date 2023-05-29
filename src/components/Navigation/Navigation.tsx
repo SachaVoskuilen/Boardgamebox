@@ -1,5 +1,5 @@
 import { Box, Flex, defaultBreakingPoints } from '@/styles';
-import { NavigationLogo, NavigationStyle, NavigationType } from '.';
+import { NavigationStyle, NavigationType } from '.';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faHamburger, faHeart, faHouse, faRightFromBracket, faSearch } from '@fortawesome/free-solid-svg-icons';
