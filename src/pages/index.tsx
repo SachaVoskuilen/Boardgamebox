@@ -3,16 +3,17 @@ import { useGetBoardgameData } from '@/hooks';
 import { type NextPage } from 'next';
 
 const Home: NextPage = () => {
-  const { data, isLoading, isError } = useGetBoardgameData(
-    'https://api.boardgameatlas.com/api/search?order=rank&limit=3&pretty=true&client_id=VMtg9BF047',
-    'general',
+  const rank = useGetBoardgameData(
+    `${process.env.NEXT_PUBLIC_BASE_BGA}limit=3&order=rank&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
+    'rank',
+  );
+  const popular = useGetBoardgameData(
+    `${process.env.NEXT_PUBLIC_BASE_BGA}limit=3&order=popular&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
+    'popular',
   );
 
   return (
-    <Layout loading={false} title="Home">
-      {isLoading && <div>Loading...</div>}
-      {isError && <div>Error retrieving boardgames</div>}
-      {data && console.log(data)}
+    <Layout loading={rank.isLoading && popular.isLoading} title="Home">
       <div>iets</div>
     </Layout>
   );

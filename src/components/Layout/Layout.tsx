@@ -63,11 +63,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
               </GridHamburgerStyle>
             )}
             <GridContentStyle>
-              <Scrollable>
-                <div>computer</div>
-                <div>{children}</div>
-                <div style={{ height: '1000px' }}>iets</div>
-              </Scrollable>
+              <Scrollable>{loading ? <div>loading...</div> : <div>{children}</div>}</Scrollable>
             </GridContentStyle>
           </StyledLayout>
         ) : (
@@ -81,11 +77,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
               </GridHamburgerStyle>
             ) : (
               <GridContentStyle>
-                <Scrollable>
-                  <div>computer</div>
-                  <div>{children}</div>
-                  <div style={{ height: '1000px' }}>iets</div>
-                </Scrollable>
+                <Scrollable>{loading ? <div>loading...</div> : <div>{children}</div>}</Scrollable>
               </GridContentStyle>
             )}
           </StyledLayout>
