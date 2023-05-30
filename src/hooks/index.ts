@@ -1,1 +1,1 @@
-export * from './UseGetBoardgame';
+export * from './UseGetBoardgames';

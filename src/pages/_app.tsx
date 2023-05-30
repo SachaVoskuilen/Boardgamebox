@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { DefaultTheme, GlobalStyle } from '@/styles';
 
 import { DehydratedState, Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
 
 const MyApp: AppType<{ dehydratedState: DehydratedState; session: Session | null }> = ({
@@ -21,6 +22,7 @@ const MyApp: AppType<{ dehydratedState: DehydratedState; session: Session | null
           <Hydrate state={pageProps.dehydratedState}>
             <GlobalStyle />
             <Component {...pageProps} />
+            <ReactQueryDevtools initialIsOpen={false} />
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>
