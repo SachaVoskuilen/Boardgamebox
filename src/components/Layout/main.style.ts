@@ -25,7 +25,8 @@ export interface MainProps
 export const StyledMain = styled.main<MainProps>`
   min-height: 100%;
   min-width: 100%;
-  background-color: ${({ theme }) => theme.colors.primaryColor};
+  background-color: ${({ theme }) => theme.colors.primaryBackgroundColor};
+
   ${color};
   ${space};
   ${layout};

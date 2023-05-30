@@ -1,7 +1,16 @@
-import { Grid, defaultBreakingPoints } from '@/styles';
+import { defaultBreakingPoints } from '@/styles';
 import Head from 'next/head';
 import { FC, useEffect, useState } from 'react';
-import { StyledLayout, StyledMain, windowSizeType } from '.';
+import {
+  Scrollable,
+  GridContentStyle,
+  GridHamburgerStyle,
+  GridNavigationStyle,
+  StyledLayout,
+  StyledMain,
+  windowSizeType,
+} from '.';
+import { HamburgerMenu, Navigation } from '../Navigation';
 
 type Props = {
   title?: string;
@@ -45,45 +54,39 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
       <StyledMain windowSize={windowSize}>
         {windowSize.width >= defaultBreakingPoints.laptop ? (
           <StyledLayout variant={menu}>
-            <Grid gridArea={'navigation'} backgroundColor={'yellow'}>
-              <button
-                onClick={() => (menu == 'default' ? setMenu('hamburger') : setMenu('default'))}
-                style={{ maxWidth: '500px' }}
-              >
-                change
-              </button>
-            </Grid>
+            <GridNavigationStyle>
+              <Navigation menu={menu} setMenu={setMenu} windowSize={windowSize} />
+            </GridNavigationStyle>
             {menu != 'default' && (
-              <Grid gridArea={'hamburger'} backgroundColor={'lightblue'}>
-                <div>hamburger</div>
-                <div>Content</div>
-              </Grid>
+              <GridHamburgerStyle>
+                <HamburgerMenu />
+              </GridHamburgerStyle>
             )}
-            <Grid gridArea={'content'}>
-              <div>computer</div>
-              <div>{children}</div>
-            </Grid>
+            <GridContentStyle>
+              <Scrollable>
+                <div>computer</div>
+                <div>{children}</div>
+                <div style={{ height: '1000px' }}>iets</div>
+              </Scrollable>
+            </GridContentStyle>
           </StyledLayout>
         ) : (
           <StyledLayout variant={menu}>
-            <Grid gridArea={'navigation'} backgroundColor={'yellow'}>
-              <button
-                onClick={() => (menu == 'default' ? setMenu('hamburger') : setMenu('default'))}
-                style={{ maxWidth: '500px' }}
-              >
-                change
-              </button>
-            </Grid>
+            <GridNavigationStyle>
+              <Navigation menu={menu} setMenu={setMenu} windowSize={windowSize} />
+            </GridNavigationStyle>
             {menu != 'default' ? (
-              <Grid gridArea={'hamburger'} backgroundColor={'lightblue'}>
-                <div>hamburger</div>
-                <div>Content</div>
-              </Grid>
+              <GridHamburgerStyle>
+                <HamburgerMenu />
+              </GridHamburgerStyle>
             ) : (
-              <Grid gridArea={'content'}>
-                <div>mobile</div>
-                <div>{children}</div>
-              </Grid>
+              <GridContentStyle>
+                <Scrollable>
+                  <div>computer</div>
+                  <div>{children}</div>
+                  <div style={{ height: '1000px' }}>iets</div>
+                </Scrollable>
+              </GridContentStyle>
             )}
           </StyledLayout>
         )}
