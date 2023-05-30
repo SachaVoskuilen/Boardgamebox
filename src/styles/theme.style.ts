@@ -30,8 +30,16 @@ export const DefaultTheme: StartTheme = {
     lightGray: '#E7E7E7',
     white: '#ffffff',
 
-    primaryColor: '#FFAA00',
-    secondaryColor: '#FF7B00',
+    color10: '#FF7B00',
+    color9: '#FF8800',
+    color8: '#FF9500',
+    color7: '#FFA200',
+    color6: '#FFAA00',
+    color5: '#FFB700',
+    color4: '#FFC300',
+    color3: '#FFD000',
+    color2: '#FFDD00',
+    color1: '#FFEA00',
 
     primaryBackgroundColor: '#ffffff',
     secondaryBackgroundColor: '#fff9ee',

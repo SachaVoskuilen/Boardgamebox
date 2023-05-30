@@ -48,7 +48,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Nunito&display=swap"
         />
       </Head>
       <StyledMain windowSize={windowSize}>

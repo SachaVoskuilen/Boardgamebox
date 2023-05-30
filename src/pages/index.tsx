@@ -1,5 +1,6 @@
 import { Layout } from '@/components';
 import { useGetBoardgameData } from '@/hooks';
+import { H1Title } from '@/styles';
 import { type NextPage } from 'next';
 
 const Home: NextPage = () => {
@@ -14,7 +15,9 @@ const Home: NextPage = () => {
 
   return (
     <Layout loading={rank.isLoading && popular.isLoading} title="Home">
-      <div>iets</div>
+      <H1Title>Quick menu</H1Title>
+      <H1Title>Ranked</H1Title>
+      <H1Title>Popular</H1Title>
     </Layout>
   );
 };
