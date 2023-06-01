@@ -10,7 +10,8 @@ import {
   StyledMain,
   windowSizeType,
 } from '.';
-import { HamburgerMenu, Navigation } from '../Navigation';
+import { Navigation } from './Navigation';
+import { HamburgerMenu } from './Hamburger';
 
 type Props = {
   title?: string;

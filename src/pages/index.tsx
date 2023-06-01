@@ -1,15 +1,15 @@
 import { GamesFlex, Layout } from '@/components';
-import { useGetBoardgameData } from '@/hooks';
+import { useGetBoardGameData } from '@/hooks';
 import { H1Title } from '@/styles';
 import { BoardGameType } from '@/types';
 import { type NextPage } from 'next';
 
 const Home: NextPage = () => {
-  const rank = useGetBoardgameData(
-    `${process.env.NEXT_PUBLIC_BASE_BGA}limit=3&order=rank&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
+  const rank = useGetBoardGameData(
+    `${process.env.NEXT_PUBLIC_BASE_BGA}limit=10&order=rank&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
     'rank',
   );
-  const popular = useGetBoardgameData(
+  const popular = useGetBoardGameData(
     `${process.env.NEXT_PUBLIC_BASE_BGA}limit=3&order=popular&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
     'popular',
   );

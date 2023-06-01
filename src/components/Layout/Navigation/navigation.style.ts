@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Flex } from '@/styles';
+import Link from 'next/link';
 
 interface NavigationStyleType {
   variant: string;
@@ -7,7 +8,7 @@ interface NavigationStyleType {
 
 export const NavigationStyle = styled(Flex)<NavigationStyleType>`
   background-color: ${({ theme }) => theme.colors.secondaryBackgroundColor};
-  height: 100%;
+  height: ${({ theme }) => theme.sizes.navHeight};
   width: 100%;
   flex-direction: row;
 
@@ -25,14 +26,14 @@ export const NavigationStyle = styled(Flex)<NavigationStyleType>`
           justify-content: center;
           align-items: center;
 
-          box-shadow: inset 1px 2px 5px 0;
+          box-shadow: inset 0 0 1px 0;
         }
       `,
       web: `
         justify-content: space-between;
         align-items: center;
 
-        box-shadow: inset 1px -2px 5px 0;
+        box-shadow: inset 0 0 1px 0;
 
         > div {
           display: flex;
@@ -46,17 +47,17 @@ export const NavigationStyle = styled(Flex)<NavigationStyleType>`
             align-items: center;
             height: 100%;
             width: 100px;
-            box-shadow: inset 0 2px 5px 0;
+            box-shadow: inset 0 0 1px 0;
           }
         }
 
-        > a {
+        > a, button {
           display: flex;
           justify-content: center;
           align-items: center;
           height: 100%;
           width: 100px;
-          box-shadow: inset 0 2px 5px 0;
+          box-shadow: inset 0 0 1px 0;
         }
     `,
     }[variant])}

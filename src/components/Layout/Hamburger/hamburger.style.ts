@@ -7,11 +7,13 @@ export const StyledHamburger = styled(Flex)`
   height: 100%;
   width: 100%;
 
-  > * {
+  > p,
+  button {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: ${({ theme }) => theme.sizes.navHeight};
-    box-shadow: inset -1px -1px 5px 0;
+    box-shadow: inset 0 0 1px 0;
   }
 `;

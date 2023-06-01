@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { windowSizeType } from '../Layout';
+import { windowSizeType } from '..';
 
 export interface NavigationType {
   menu: string;

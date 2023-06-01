@@ -10,7 +10,9 @@ export const GlobalStyle = createGlobalStyle`
     font: inherit;
     cursor: pointer;
     outline: inherit;
+    text-decoration: none;
   }
+  
   html,
   body {
     margin: 0;
