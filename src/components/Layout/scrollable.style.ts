@@ -7,4 +7,8 @@ export const Scrollable = styled(Box)`
   margin: 0 auto;
   position: relative;
   overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

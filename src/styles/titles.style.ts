@@ -25,7 +25,8 @@ export const H2Title = styled.h2<TitleProps>`
   font-family: 'Dosis', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
+  margin: 0 0 10px;
 
   ${typography};
   ${color};

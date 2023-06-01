@@ -4,5 +4,6 @@ export * from './devices.style';
 export * from './flex.style';
 export * from './global.style';
 export * from './grid.style';
+export * from './text.style';
 export * from './theme.style';
 export * from './titles.style';
