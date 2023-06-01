@@ -31,13 +31,13 @@ export const SimpleGame: FC<Props> = ({ game }) => {
       <Box margin={'0 25px'}>
         <H2Title>{game.name}</H2Title>
         <Flex justifyContent={'space-between'} flexDirection={'row'} flexWrap={'wrap'}>
-          <Flex height={'25px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
+          <Flex height={'25px'} minWidth={'80px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
             <StyledText width={'25px'} color={`color${ICONCOLOR.color}`}>
               <FontAwesomeIcon icon={faStar} height="14px" />
             </StyledText>
-            <StyledText>{Math.round(game.average_user_rating! * 100) / 100} / 5</StyledText>
+            <StyledText>{(Math.round(game.average_user_rating! * 100) / 100).toFixed(2)} / 5</StyledText>
           </Flex>
-          <Flex height={'25px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
+          <Flex height={'25px'} minWidth={'80px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
             <Flex width={'25px'} color={`color${ICONCOLOR.color}`}>
               <FontAwesomeIcon icon={faUsers} height="14px" />
             </Flex>
@@ -45,7 +45,7 @@ export const SimpleGame: FC<Props> = ({ game }) => {
               {game.min_players} - {game.max_players}
             </StyledText>
           </Flex>
-          <Flex height={'25px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
+          <Flex height={'25px'} minWidth={'80px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
             <Flex width={'25px'} color={`color${ICONCOLOR.color}`}>
               <FontAwesomeIcon icon={faClock} height="14px" />
             </Flex>
@@ -53,11 +53,11 @@ export const SimpleGame: FC<Props> = ({ game }) => {
               {game.min_playtime} - {game.max_playtime}
             </StyledText>
           </Flex>
-          <Flex height={'25px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
+          <Flex height={'25px'} minWidth={'80px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
             <Flex width={'25px'} color={`color${ICONCOLOR.color}`}>
               <FontAwesomeIcon icon={faScaleUnbalanced} height="14px" />
             </Flex>
-            <StyledText>{Math.round(game.average_learning_complexity! * 100) / 100} / 5</StyledText>
+            <StyledText>{(Math.round(game.average_learning_complexity! * 100) / 100).toFixed(2)} / 5</StyledText>
           </Flex>
         </Flex>
       </Box>
