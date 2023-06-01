@@ -1,23 +1,34 @@
-import { Layout } from '@/components';
+import { DetailGame, Layout } from '@/components';
 import { useGetBoardGameData } from '@/hooks';
+import { BoardGameType } from '@/types';
 import { GetServerSidePropsContext } from 'next';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 type DetailGameProps = {
   id: string;
 };
 
-const DetailGame: FC<DetailGameProps> = ({ id }) => {
-  const game = useGetBoardGameData(
+const SingleGame: FC<DetailGameProps> = ({ id }) => {
+  const [title, setTitle] = useState<string>('DetailGame');
+  const [game, setGame] = useState<BoardGameType>();
+
+  const gameData = useGetBoardGameData(
     `${process.env.NEXT_PUBLIC_BASE_BGA}ids=${id}&order=rank&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
     'rank',
   );
 
-  if (game.data) {
-    console.log('game: ', game.data.games[0]);
-  }
+  useEffect(() => {
+    if (gameData.data) {
+      setTitle(gameData.data.games[0].name);
+      setGame(gameData.data.games[0]);
+    }
+  }, [gameData]);
 
-  return <Layout>iets</Layout>;
+  return (
+    <Layout title={title} loading={!game}>
+      {game! && <DetailGame game={game} />}
+    </Layout>
+  );
 };
 
 export async function getServerSideProps({ req, res, params }: GetServerSidePropsContext) {
@@ -36,4 +47,4 @@ export async function getServerSideProps({ req, res, params }: GetServerSideProp
   };
 }
 
-export default DetailGame;
+export default SingleGame;
