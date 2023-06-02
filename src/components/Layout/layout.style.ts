@@ -42,7 +42,7 @@ export const StyledLayout = styled(Grid)<StyledLayoutProps>`
           grid-template-rows: ${theme.sizes.navHeight} 1fr;
           grid-template-areas:
             'navigation navigation'
-            'hamburger content';
+            'content hamburger';
     `,
       }[variant])}
   }

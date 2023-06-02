@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { StyledSimpleGame } from '.';
 import Image from 'next/image';
 import { BoardGameType } from '@/types';
-import { Box, Flex, H2Title, StyledText } from '@/styles';
+import { Box, Flex, SimpleGameTitle, StyledText } from '@/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faScaleUnbalanced, faStar, faUsers } from '@fortawesome/free-solid-svg-icons';
 
@@ -29,8 +29,8 @@ export const SimpleGame: FC<Props> = ({ game }) => {
         style={{ objectFit: 'contain' }}
       />
       <Box margin={'0 25px'}>
-        <H2Title>{game.name}</H2Title>
-        <Flex justifyContent={'space-between'} flexDirection={'row'} flexWrap={'wrap'}>
+        <SimpleGameTitle>{game.name}</SimpleGameTitle>
+        <Flex justifyContent={'space-between'} flexDirection={'column'}>
           <Flex height={'25px'} minWidth={'80px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
             <StyledText width={'25px'} color={`color${ICONCOLOR.color}`}>
               <FontAwesomeIcon icon={faStar} height="14px" />

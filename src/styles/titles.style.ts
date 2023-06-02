@@ -48,3 +48,18 @@ export const H3Title = styled.h3<TitleProps>`
   ${space};
   ${border};
 `;
+
+export const SimpleGameTitle = styled.h2<TitleProps>`
+  width: fit-content;
+  font-family: 'Dosis', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  margin: 0 0 15px;
+
+  ${typography};
+  ${color};
+  ${layout};
+  ${space};
+  ${border};
+`;

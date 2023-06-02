@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { StyledGamesFlex } from '.';
+import { StyledGamesGrid } from '.';
 import { BoardGameType } from '@/types';
 import { SimpleGame } from '..';
 import Link from 'next/link';
@@ -9,14 +9,14 @@ type Props = {
   type?: string;
 };
 
-export const GamesFlex: FC<Props> = ({ games, type }) => {
+export const GamesGrid: FC<Props> = ({ games, type }) => {
   return (
-    <StyledGamesFlex>
+    <StyledGamesGrid>
       {games.map((game) => (
         <Link href={`/game/${game.id}`}>
           <SimpleGame game={game} key={`${type}${game.id}`} />
         </Link>
       ))}
-    </StyledGamesFlex>
+    </StyledGamesGrid>
   );
 };

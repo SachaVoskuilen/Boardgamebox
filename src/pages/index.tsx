@@ -1,4 +1,4 @@
-import { GamesFlex, Layout } from '@/components';
+import { GamesGrid, Layout } from '@/components';
 import { useGetBoardGameData } from '@/hooks';
 import { H1Title } from '@/styles';
 import { BoardGameType } from '@/types';
@@ -31,9 +31,9 @@ const Home: NextPage = () => {
     <Layout loading={rankedData.isLoading && popularData.isLoading} title="Home">
       <H1Title>Quick menu</H1Title>
       <H1Title>Ranked</H1Title>
-      {ranked! && <GamesFlex games={ranked} type={'ranked'} />}
+      {ranked! && <GamesGrid games={ranked} type={'ranked'} />}
       <H1Title>Popular</H1Title>
-      {popular! && <GamesFlex games={popular} type={'popular'} />}
+      {popular! && <GamesGrid games={popular} type={'popular'} />}
     </Layout>
   );
 };
