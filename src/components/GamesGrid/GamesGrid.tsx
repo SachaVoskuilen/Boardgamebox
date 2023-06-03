@@ -1,7 +1,6 @@
 import { FC } from 'react';
-import { StyledGamesGrid } from '.';
+import { SimpleGame, StyledGamesGrid } from '.';
 import { BoardGameType } from '@/types';
-import { SimpleGame } from '..';
 import Link from 'next/link';
 
 type Props = {

@@ -1,8 +1,10 @@
 import { BoardGameType } from '@/types';
-import { FC } from 'react';
-import { DetailTop, StyledDetailGame } from '.';
-import Image from 'next/image';
-import { Box, Grid } from '@/styles';
+import { FC, useEffect, useState } from 'react';
+import { StyledDetailTop, StyledDetailGame, StyledTopButton, StyledTopFlex, DetailTop } from '.';
+import { Flex, H1Title, H2Title, StyledText } from '@/styles';
+import router from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faHeart, faWarehouse } from '@fortawesome/free-solid-svg-icons';
 
 type GameProps = {
   game: BoardGameType;
@@ -11,10 +13,8 @@ type GameProps = {
 export const DetailGame: FC<GameProps> = ({ game }) => {
   return (
     <StyledDetailGame>
-      <DetailTop>
-        <img src={game.image_url!} alt={'Image text'} width={300} height={300} />
-      </DetailTop>
-      Detailgame = {game.name}
+      <DetailTop image={game.image_url!} name={game.name!} description={game.description_preview!} />
+      <p>Detailgame = {game.name}</p>
     </StyledDetailGame>
   );
 };
