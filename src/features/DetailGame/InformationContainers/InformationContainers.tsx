@@ -1,6 +1,6 @@
 import { BoardGameType } from '@/types';
 import { FC, useEffect, useState } from 'react';
-import { DetailContentButton, StyledDetailContentButton, StyledDetailInformationContainerLayout } from '.';
+import { DetailContentButton, StyledDetailInformationContainerLayout } from '.';
 import { windowSizeType } from '@/components';
 import { H1Title, defaultBreakingPoints } from '@/styles';
 
@@ -8,13 +8,19 @@ type GameProps = {
   game: BoardGameType;
 };
 
+type contentStatesType = {
+  [key: string]: boolean;
+};
+
 export const InformationContainers: FC<GameProps> = ({ game }) => {
   const [windowSize, setWindowSize] = useState<windowSizeType>({ height: 100, width: 100 });
 
-  const [general, setGeneral] = useState<boolean>(false);
-  const [rating, setRating] = useState<boolean>(false);
-  const [faq, setFaq] = useState<boolean>(false);
-  const [production, setProduction] = useState<boolean>(false);
+  const [contentStates, setContentStates] = useState<contentStatesType>({
+    general: false,
+    rating: false,
+    faq: false,
+    production: false,
+  });
 
   useEffect(() => {
     // On mount
@@ -31,27 +37,18 @@ export const InformationContainers: FC<GameProps> = ({ game }) => {
   }, []);
 
   const showContent: FC<string> = (name: string) => {
-    switch (name) {
-      case 'general':
-        setGeneral(!general);
-        break;
-      case 'rating':
-        setRating(!rating);
-        break;
-      case 'faq':
-        setFaq(!faq);
-        break;
-      case 'production':
-        setProduction(!production);
-        break;
-      default:
-        break;
-    }
+    setContentStates({ ...contentStates, [name]: !contentStates[name] });
   };
 
   useEffect(() => {
-    console.log(general);
-  }, [general]);
+    if (
+      Object.values(contentStates).every((item) => item === false) &&
+      windowSize.width >= defaultBreakingPoints.laptop
+    ) {
+      setContentStates({ ...contentStates, general: !contentStates.general });
+      console.log('Should all be false');
+    }
+  }, [contentStates]);
 
   if (windowSize.width >= defaultBreakingPoints.laptop) {
     return (
@@ -68,15 +65,15 @@ export const InformationContainers: FC<GameProps> = ({ game }) => {
   } else {
     return (
       <StyledDetailInformationContainerLayout>
-        <DetailContentButton name={'general'} state={general} changeContent={showContent} />
-        {general && <div>content</div>}
+        <DetailContentButton name={'general'} state={contentStates.general!} changeContent={showContent} />
+        {contentStates.general && <div>content</div>}
         {/* {general && <DetailContent comonent={generalContent} />} */}
-        <DetailContentButton name={'rating'} state={rating} changeContent={showContent} />
-        {rating && <div>content</div>}
-        <DetailContentButton name={'faq'} state={faq} changeContent={showContent} />
-        {faq && <div>content</div>}
-        <DetailContentButton name={'production'} state={production} changeContent={showContent} />
-        {production && <div>content</div>}
+        <DetailContentButton name={'rating'} state={contentStates.rating!} changeContent={showContent} />
+        {contentStates.rating && <div>content</div>}
+        <DetailContentButton name={'faq'} state={contentStates.faq!} changeContent={showContent} />
+        {contentStates.faq && <div>content</div>}
+        <DetailContentButton name={'production'} state={contentStates.production!} changeContent={showContent} />
+        {contentStates.production && <div>content</div>}
       </StyledDetailInformationContainerLayout>
     );
   }
