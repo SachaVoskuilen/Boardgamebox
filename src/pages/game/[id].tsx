@@ -1,4 +1,5 @@
-import { DetailGame, Layout } from '@/components';
+import { Layout } from '@/components';
+import { DetailGame } from '@/features';
 import { useGetBoardGameData } from '@/hooks';
 import { BoardGameType } from '@/types';
 import { GetServerSidePropsContext } from 'next';
