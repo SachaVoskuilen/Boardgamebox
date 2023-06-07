@@ -1,1 +1,2 @@
-export * from './UseGetBoardgames';
+export * from './useGetBoardgames';
+export * from './useWindowState';

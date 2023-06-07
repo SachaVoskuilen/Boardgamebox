@@ -6,8 +6,11 @@ import { faGear, faHeart, faHouse, faRightFromBracket, faSearch, faWarehouse } f
 import { FC } from 'react';
 import NavButton from './Clickable/NavButton';
 import NavLink from './Clickable/NavLink';
+import { useWindowState } from '@/hooks';
 
-export const Navigation: FC<NavigationType> = ({ menu, setMenu, windowSize }: NavigationType) => {
+export const Navigation: FC<NavigationType> = ({ menu, setMenu }: NavigationType) => {
+  const { windowSize } = useWindowState();
+
   const homeIcon = <FontAwesomeIcon icon={faHouse} width="30px" />;
   const searchIcon = <FontAwesomeIcon icon={faSearch} width="30px" />;
   const ownIcon = <FontAwesomeIcon icon={faWarehouse} width={'30px'} />;

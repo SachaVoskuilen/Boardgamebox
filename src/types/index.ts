@@ -8,3 +8,4 @@ export * from './question.type';
 export * from './rating.type';
 export * from './select.type';
 export * from './user.type';
+export * from './windowState.type';

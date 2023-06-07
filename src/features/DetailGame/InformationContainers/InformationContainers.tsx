@@ -1,9 +1,9 @@
 import { BoardGameType } from '@/types';
 import { FC, useEffect, useState } from 'react';
 import { DetailContentButton, StyledDetailContentLargeNavigation, StyledDetailInformationContainerLayout } from '.';
-import { windowSizeType } from '@/components';
 import { defaultBreakingPoints } from '@/styles';
 import { FaqContainer, GeneralContainer, ProductionContainer, RatingContainer } from './Containers';
+import { useWindowState } from '@/hooks';
 
 type GameProps = {
   game: BoardGameType;
@@ -21,22 +21,8 @@ const DEFAULTCONTENTSTATES = {
 };
 
 export const InformationContainers: FC<GameProps> = ({ game }) => {
-  const [windowSize, setWindowSize] = useState<windowSizeType>({ height: 100, width: 100 });
+  const { windowSize } = useWindowState();
   const [contentStates, setContentStates] = useState<contentStatesType>(DEFAULTCONTENTSTATES);
-
-  useEffect(() => {
-    // On mount
-    setWindowSize({ height: window.innerHeight, width: window.innerWidth });
-
-    // Watch
-    const handleWindowResize = () => {
-      setWindowSize({ height: window.innerHeight, width: window.innerWidth });
-    };
-    window.addEventListener('resize', handleWindowResize);
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
 
   const showContent: FC<string> = (name: string) => {
     setContentStates({ ...DEFAULTCONTENTSTATES, [name]: !contentStates[name] });
