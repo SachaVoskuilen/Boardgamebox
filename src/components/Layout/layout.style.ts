@@ -38,7 +38,7 @@ export const StyledLayout = styled(Grid)<StyledLayoutProps>`
             'content';
       `,
         hamburger: `
-          grid-template-columns: ${theme.sizes.hamburgerWidth} 1fr;
+          grid-template-columns: 1fr ${theme.sizes.hamburgerWidth};
           grid-template-rows: ${theme.sizes.navHeight} 1fr;
           grid-template-areas:
             'navigation navigation'

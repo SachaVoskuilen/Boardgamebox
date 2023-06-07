@@ -29,14 +29,14 @@ const Home: NextPage = () => {
 
   return (
     <Layout loading={rankedData.isLoading && popularData.isLoading} title="Home">
-      <H1Title $bold={true} $line={true}>
+      <H1Title $bold $line>
         Quick menu
       </H1Title>
-      <H1Title $bold={true} $line={true}>
+      <H1Title $bold $line>
         Ranked
       </H1Title>
       {ranked! && <GamesGrid games={ranked} type={'ranked'} />}
-      <H1Title $bold={true} $line={true}>
+      <H1Title $bold $line>
         Popular
       </H1Title>
       {popular! && <GamesGrid games={popular} type={'popular'} />}

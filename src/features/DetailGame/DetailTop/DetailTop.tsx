@@ -45,18 +45,18 @@ export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
             <Flex maxHeight={'30px'} width={'30px'} color={collection ? 'color5' : 'black'}>
               {ownIcon}
             </Flex>
-            <H2Title $bold={true}>Own</H2Title>
+            <H2Title $bold>Own</H2Title>
           </StyledTopButton>
           <StyledTopButton onClick={updateLike}>
             <Flex maxHeight={'30px'} width={'30px'} color={liked ? 'red' : 'black'}>
               {likeIcon}
             </Flex>
-            <H2Title $bold={true}>Like</H2Title>
+            <H2Title $bold>Like</H2Title>
           </StyledTopButton>
         </StyledTopFlex>
       </Box>
       <Box>
-        <H1Title $bold={true} margin={'25px 0 0 0'}>
+        <H1Title $bold margin={'25px 0 0 0'}>
           {name}
         </H1Title>
         <StyledText>{`${description.split('.').slice(0, 2).join('. ')}.`}</StyledText>

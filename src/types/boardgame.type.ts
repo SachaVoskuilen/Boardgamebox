@@ -10,7 +10,7 @@ export interface BoardGameType {
   max_players?: number;
   min_playtime?: number;
   max_playtime?: number;
-  minAge?: number;
+  min_age?: number;
   description?: string;
   thumb_url?: string;
   image_url?: string;

@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { StyledDetailContentButton } from './detailContentButton.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faClose } from '@fortawesome/free-solid-svg-icons';
+import { CapitalFirstCharacter } from '@/utils';
 
 type DetailContentButtonType = {
   name: string;
@@ -19,8 +20,8 @@ export const DetailContentButton: FC<DetailContentButtonType> = ({ name, state, 
 
   return (
     <StyledDetailContentButton onClick={() => changeContent(name)} active={active}>
-      <H1Title $line={true} $bold={true}>
-        {`${name.charAt(0).toUpperCase()}${name.slice(1)}`}
+      <H1Title $line $bold>
+        {CapitalFirstCharacter(name)}
       </H1Title>
       {icon && <div>{state ? toCloseIcon : toOpenIcon}</div>}
     </StyledDetailContentButton>

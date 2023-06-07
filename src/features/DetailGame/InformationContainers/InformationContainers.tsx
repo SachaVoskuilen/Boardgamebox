@@ -2,7 +2,8 @@ import { BoardGameType } from '@/types';
 import { FC, useEffect, useState } from 'react';
 import { DetailContentButton, StyledDetailContentLargeNavigation, StyledDetailInformationContainerLayout } from '.';
 import { windowSizeType } from '@/components';
-import { Flex, defaultBreakingPoints } from '@/styles';
+import { defaultBreakingPoints } from '@/styles';
+import { FaqContainer, GeneralContainer, ProductionContainer, RatingContainer } from './Containers';
 
 type GameProps = {
   game: BoardGameType;
@@ -21,7 +22,6 @@ const DEFAULTCONTENTSTATES = {
 
 export const InformationContainers: FC<GameProps> = ({ game }) => {
   const [windowSize, setWindowSize] = useState<windowSizeType>({ height: 100, width: 100 });
-
   const [contentStates, setContentStates] = useState<contentStatesType>(DEFAULTCONTENTSTATES);
 
   useEffect(() => {
@@ -61,29 +61,28 @@ export const InformationContainers: FC<GameProps> = ({ game }) => {
           <DetailContentButton name={'faq'} state={contentStates.faq!} changeContent={showContent} />
           <DetailContentButton name={'production'} state={contentStates.production!} changeContent={showContent} />
         </StyledDetailContentLargeNavigation>
-        {contentStates.general && <div>General content</div>}
-        {contentStates.rating && <div>Rating content</div>}
-        {contentStates.faq && <div>Faq content</div>}
-        {contentStates.production && <div>Production content</div>}
+        {contentStates.general && <GeneralContainer game={game} />}
+        {contentStates.rating && <RatingContainer />}
+        {contentStates.faq && <FaqContainer />}
+        {contentStates.production && <ProductionContainer />}
       </StyledDetailInformationContainerLayout>
     );
   } else {
     return (
       <StyledDetailInformationContainerLayout>
         <DetailContentButton name={'general'} state={contentStates.general!} changeContent={showContent} icon={true} />
-        {contentStates.general && <div>General content</div>}
-        {/* {general && <DetailContent component={generalContent} />} */}
+        {contentStates.general && <GeneralContainer game={game} />}
         <DetailContentButton name={'rating'} state={contentStates.rating!} changeContent={showContent} icon={true} />
-        {contentStates.rating && <div>Rating content</div>}
+        {contentStates.rating && <RatingContainer />}
         <DetailContentButton name={'faq'} state={contentStates.faq!} changeContent={showContent} icon={true} />
-        {contentStates.faq && <div>Faq content</div>}
+        {contentStates.faq && <FaqContainer />}
         <DetailContentButton
           name={'production'}
           state={contentStates.production!}
           changeContent={showContent}
           icon={true}
         />
-        {contentStates.production && <div>Production content</div>}
+        {contentStates.production && <ProductionContainer />}
       </StyledDetailInformationContainerLayout>
     );
   }
