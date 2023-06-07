@@ -2,7 +2,7 @@ import { Box, Flex, StyledText, defaultBreakingPoints } from '@/styles';
 import { NavigationStyle, NavigationType } from '.';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faHeart, faHouse, faRightFromBracket, faSearch, faWarehouse } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faHeart, faHouse, faSearch, faWarehouse } from '@fortawesome/free-solid-svg-icons';
 import { FC } from 'react';
 import NavButton from './Clickable/NavButton';
 import NavLink from './Clickable/NavLink';

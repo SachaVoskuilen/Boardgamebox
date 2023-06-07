@@ -16,13 +16,13 @@ export const H1Title = styled.h1<TitleProps>`
   padding-bottom: 5px;
 
   ${({ $bold }) =>
-    $bold! &&
+    $bold &&
     css`
       font-weight: 600;
     `}
 
   ${({ $line, theme }) =>
-    $line! &&
+    $line &&
     css`
       border-bottom: 3px solid ${theme.colors.color5};
     `}
@@ -44,13 +44,13 @@ export const H2Title = styled.h2<TitleProps>`
   margin: 0;
 
   ${({ $bold }) =>
-    $bold! &&
+    $bold &&
     css`
       font-weight: 600;
     `}
 
   ${({ $line, theme }) =>
-    $line! &&
+    $line &&
     css`
       border-bottom: 3px solid ${theme.colors.color5};
     `}
@@ -70,13 +70,13 @@ export const H3Title = styled.h3<TitleProps>`
   font-size: 14px;
 
   ${({ $bold }) =>
-    $bold! &&
+    $bold &&
     css`
       font-weight: 600;
     `}
 
   ${({ $line, theme }) =>
-    $line! &&
+    $line &&
     css`
       border-bottom: 3px solid ${theme.colors.color5};
     `}
@@ -97,13 +97,13 @@ export const GameTitle = styled.h2<TitleProps>`
   margin: 0 0 15px;
 
   ${({ $bold }) =>
-    $bold! &&
+    $bold &&
     css`
       font-weight: 600;
     `}
 
   ${({ $line, theme }) =>
-    $line! &&
+    $line &&
     css`
       border-bottom: 3px solid ${theme.colors.color5};
     `}

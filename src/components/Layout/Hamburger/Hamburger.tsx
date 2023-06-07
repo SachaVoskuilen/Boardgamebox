@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { faRightFromBracket, faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 import { StyledHamburger } from '.';
 import { StyledText } from '@/styles';
 import { signIn, signOut, useSession } from 'next-auth/react';

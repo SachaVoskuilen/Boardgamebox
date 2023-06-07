@@ -3,7 +3,7 @@ import { Box, Flex, H2Title } from '@/styles';
 import { useState } from 'react';
 import { BasicBlock } from './Basic';
 import { BoardGameType } from '@/types';
-import { TagFlex, Tag } from '@/components';
+import { TagFlex } from '@/components';
 
 export const GeneralContainer = ({ game }: { game: BoardGameType }) => {
   const { min_age, min_players, max_players, min_playtime, max_playtime, average_learning_complexity } = game;
@@ -13,8 +13,6 @@ export const GeneralContainer = ({ game }: { game: BoardGameType }) => {
     { value: 'box', label: 'Box' },
     { value: 'boardGameBox', label: 'BoardGameBox' },
   ];
-
-  console.log(game);
 
   const boxData: BasicInfoType = {
     age: min_age,
@@ -44,11 +42,11 @@ export const GeneralContainer = ({ game }: { game: BoardGameType }) => {
       </Box>
       <Box margin={'15px 0'}>
         <H2Title $bold>Category</H2Title>
-        <TagFlex tags={game?.categories!.map((category) => category.id as string)} />
+        {game?.categories && <TagFlex tags={game?.categories.map((category) => category.id as string)} />}
       </Box>
       <Box margin={'15px 0'}>
         <H2Title $bold>mechanics</H2Title>
-        <TagFlex tags={game?.mechanics!.map((mechanic) => mechanic.id as string)} />
+        {game?.mechanics && <TagFlex tags={game?.mechanics.map((mechanic) => mechanic.id as string)} />}
       </Box>
     </Flex>
   );

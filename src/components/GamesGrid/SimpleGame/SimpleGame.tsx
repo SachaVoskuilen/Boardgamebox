@@ -34,7 +34,11 @@ export const SimpleGame: FC<Props> = ({ game }) => {
             <StyledText width={'25px'} color={`color${ICONCOLOR.color}`}>
               <FontAwesomeIcon icon={faStar} height="14px" />
             </StyledText>
-            <StyledText>{(Math.round(game.average_user_rating! * 100) / 100).toFixed(2)} / 5</StyledText>
+            {game.average_user_rating ? (
+              <StyledText>{(Math.round(game.average_user_rating * 100) / 100).toFixed(2)} / 5</StyledText>
+            ) : (
+              <StyledText>- / 5</StyledText>
+            )}
           </Flex>
           <Flex height={'25px'} minWidth={'80px'} justifyContent={'start'} alignItems={'center'} margin={'0 20px 0 0'}>
             <Flex width={'25px'} color={`color${ICONCOLOR.color}`}>
@@ -56,7 +60,11 @@ export const SimpleGame: FC<Props> = ({ game }) => {
             <Flex width={'25px'} color={`color${ICONCOLOR.color}`}>
               <FontAwesomeIcon icon={faScaleUnbalanced} height="14px" />
             </Flex>
-            <StyledText>{(Math.round(game.average_learning_complexity! * 100) / 100).toFixed(2)} / 5</StyledText>
+            {game.average_learning_complexity ? (
+              <StyledText>{(Math.round(game.average_learning_complexity * 100) / 100).toFixed(2)} / 5</StyledText>
+            ) : (
+              <StyledText>- / 5</StyledText>
+            )}
           </Flex>
         </Flex>
       </Box>

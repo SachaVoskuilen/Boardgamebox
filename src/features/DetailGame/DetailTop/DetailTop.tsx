@@ -3,7 +3,7 @@ import router from 'next/router';
 import { StyledDetailTop, StyledTopButton, StyledTopFlex } from '.';
 import { faChevronLeft, faWarehouse, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useEffect, FC } from 'react';
+import { useState, FC } from 'react';
 
 type DetailTopType = {
   image: string;
@@ -26,10 +26,6 @@ export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
   function updateLike() {
     setLike(!liked);
   }
-
-  useEffect(() => {
-    console.log(collection, liked);
-  }, [collection, liked]);
 
   return (
     <StyledDetailTop>

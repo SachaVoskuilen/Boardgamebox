@@ -32,7 +32,7 @@ const SingleGame: FC<DetailGameProps> = ({ id }) => {
   );
 };
 
-export async function getServerSideProps({ req, res, params }: GetServerSidePropsContext) {
+export async function getServerSideProps({ params }: GetServerSidePropsContext) {
   if (!params) {
     return {
       redirect: {

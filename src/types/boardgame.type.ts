@@ -1,4 +1,4 @@
-import { CategoryType, ImagesType, MarkerType, MechanicType, ProductionType, QuestionType, RatingType } from '.';
+import { CategoryType, ImagesType, MechanicType, ProductionType } from '.';
 
 export interface BoardGameType {
   id: string;

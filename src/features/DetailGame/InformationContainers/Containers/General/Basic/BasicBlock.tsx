@@ -1,15 +1,12 @@
 import { FC } from 'react';
 import { StyledBasicBlock } from '.';
 import { Flex, Grid, H3Title, StyledText } from '@/styles';
-import { CapitalFirstCharacter } from '@/utils';
 
 type basicBlockType = {
   basicInfo: BasicInfoType;
 };
 
 export const BasicBlock: FC<basicBlockType> = ({ basicInfo }) => {
-  console.log(basicInfo);
-
   const { age, players, duration, weight } = basicInfo;
   return (
     <Grid
@@ -27,10 +24,10 @@ export const BasicBlock: FC<basicBlockType> = ({ basicInfo }) => {
       </StyledBasicBlock>
       <StyledBasicBlock>
         <Flex alignItems={'center'}>
-          <StyledText>{age! ? age : '-'} +</StyledText>
+          <StyledText>{age ? age : '-'} +</StyledText>
         </Flex>
         <Flex alignItems={'center'}>
-          {players?.recPlayers! ? (
+          {players?.recPlayers ? (
             <StyledText>{players.recPlayers}</StyledText>
           ) : (
             <StyledText>
@@ -39,17 +36,17 @@ export const BasicBlock: FC<basicBlockType> = ({ basicInfo }) => {
           )}
         </Flex>
         <Flex alignItems={'center'}>
-          {duration?.avgDuration! ? (
+          {duration?.avgDuration ? (
             <StyledText>{duration.avgDuration}</StyledText>
           ) : (
             <StyledText>
-              {duration?.minDuration ? duration?.minDuration : ' / '} -{' '}
+              {duration?.minDuration ? duration?.minDuration : ' / '} -
               {duration?.maxDuration ? duration?.maxDuration : ' / '}
             </StyledText>
           )}
         </Flex>
         <Flex alignItems={'center'}>
-          {weight && <StyledText>{(Math.round(weight! * 100) / 100).toFixed(2)} / 5</StyledText>}
+          {weight && <StyledText>{(Math.round(weight * 100) / 100).toFixed(2)} / 5</StyledText>}
         </Flex>
       </StyledBasicBlock>
     </Grid>

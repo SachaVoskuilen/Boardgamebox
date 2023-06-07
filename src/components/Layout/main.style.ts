@@ -19,7 +19,7 @@ export interface MainProps
     PositionProps,
     ShadowProps,
     BorderProps {
-  windowSize: WindowStateType;
+  windowSize: WindowStateType['windowSize'];
 }
 
 export const StyledMain = styled.main<MainProps>`

@@ -1,4 +1,4 @@
-type BasicInfoType = {
+export interface BasicInfoType {
   age?: number;
   players?: {
     minPlayers?: number;
@@ -11,4 +11,4 @@ type BasicInfoType = {
     avgDuration?: number;
   };
   weight?: number;
-};
+}

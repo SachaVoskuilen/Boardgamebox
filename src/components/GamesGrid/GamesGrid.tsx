@@ -12,8 +12,8 @@ export const GamesGrid: FC<Props> = ({ games, type }) => {
   return (
     <StyledGamesGrid>
       {games.map((game) => (
-        <Link href={`/game/${game.id}`}>
-          <SimpleGame game={game} key={`${type}${game.id}`} />
+        <Link href={`/game/${game.id}`} key={`${type}${game.id}`}>
+          <SimpleGame game={game} />
         </Link>
       ))}
     </StyledGamesGrid>

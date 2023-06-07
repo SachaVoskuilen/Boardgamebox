@@ -6,6 +6,6 @@ export * from './mechanic.type';
 export * from './production.type';
 export * from './question.type';
 export * from './rating.type';
-export * from './select.type';
+export * from './option.type';
 export * from './user.type';
 export * from './windowState.type';

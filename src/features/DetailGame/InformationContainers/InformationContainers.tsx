@@ -11,6 +11,10 @@ type GameProps = {
 
 type contentStatesType = {
   [key: string]: boolean;
+  general: boolean;
+  rating: boolean;
+  faq: boolean;
+  production: boolean;
 };
 
 const DEFAULTCONTENTSTATES = {
@@ -42,10 +46,10 @@ export const InformationContainers: FC<GameProps> = ({ game }) => {
     return (
       <StyledDetailInformationContainerLayout>
         <StyledDetailContentLargeNavigation>
-          <DetailContentButton name={'general'} state={contentStates.general!} changeContent={showContent} />
-          <DetailContentButton name={'rating'} state={contentStates.rating!} changeContent={showContent} />
-          <DetailContentButton name={'faq'} state={contentStates.faq!} changeContent={showContent} />
-          <DetailContentButton name={'production'} state={contentStates.production!} changeContent={showContent} />
+          <DetailContentButton name={'general'} state={contentStates.general} changeContent={showContent} />
+          <DetailContentButton name={'rating'} state={contentStates.rating} changeContent={showContent} />
+          <DetailContentButton name={'faq'} state={contentStates.faq} changeContent={showContent} />
+          <DetailContentButton name={'production'} state={contentStates.production} changeContent={showContent} />
         </StyledDetailContentLargeNavigation>
         {contentStates.general && <GeneralContainer game={game} />}
         {contentStates.rating && <RatingContainer />}
@@ -56,15 +60,15 @@ export const InformationContainers: FC<GameProps> = ({ game }) => {
   } else {
     return (
       <StyledDetailInformationContainerLayout>
-        <DetailContentButton name={'general'} state={contentStates.general!} changeContent={showContent} icon={true} />
+        <DetailContentButton name={'general'} state={contentStates.general} changeContent={showContent} icon={true} />
         {contentStates.general && <GeneralContainer game={game} />}
-        <DetailContentButton name={'rating'} state={contentStates.rating!} changeContent={showContent} icon={true} />
+        <DetailContentButton name={'rating'} state={contentStates.rating} changeContent={showContent} icon={true} />
         {contentStates.rating && <RatingContainer />}
-        <DetailContentButton name={'faq'} state={contentStates.faq!} changeContent={showContent} icon={true} />
+        <DetailContentButton name={'faq'} state={contentStates.faq} changeContent={showContent} icon={true} />
         {contentStates.faq && <FaqContainer />}
         <DetailContentButton
           name={'production'}
-          state={contentStates.production!}
+          state={contentStates.production}
           changeContent={showContent}
           icon={true}
         />

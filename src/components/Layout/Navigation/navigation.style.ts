@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Flex } from '@/styles';
-import Link from 'next/link';
 
 interface NavigationStyleType {
   variant: string;

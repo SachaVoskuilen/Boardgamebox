@@ -1,4 +1,4 @@
-import { Grid, device } from '@/styles';
+import { Grid } from '@/styles';
 import styled from 'styled-components';
 
 export const StyledDetailGame = styled(Grid)`
