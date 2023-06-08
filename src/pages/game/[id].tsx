@@ -15,7 +15,7 @@ const SingleGame: FC<DetailGameProps> = ({ id }) => {
 
   const gameData = useGetBoardGameData(
     `${process.env.NEXT_PUBLIC_BASE_BGA}ids=${id}&order=rank&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
-    'rank',
+    'detail',
   );
 
   useEffect(() => {

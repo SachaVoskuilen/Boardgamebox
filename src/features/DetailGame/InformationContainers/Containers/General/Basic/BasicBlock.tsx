@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { StyledBasicBlock } from '.';
 import { Flex, Grid, H3Title, StyledText } from '@/styles';
+import { BasicInfoType } from '../basicInfo.type';
 
 type basicBlockType = {
   basicInfo: BasicInfoType;
