@@ -1,51 +1,54 @@
 import { Layout } from '@/components';
 import { DetailGame } from '@/features';
-import { useGetBoardGameData } from '@/hooks';
-import { BoardGameType } from '@/types';
+import { prefetchCategories, prefetchDetailGame, prefetchMechanics, useGetDetailGame } from '@/hooks';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 import { GetServerSidePropsContext } from 'next';
-import { FC, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { FC, useEffect } from 'react';
 
 type DetailGameProps = {
   id: string;
 };
 
 const SingleGame: FC<DetailGameProps> = ({ id }) => {
-  const [title, setTitle] = useState<string>('DetailGame');
-  const [game, setGame] = useState<BoardGameType>();
-
-  const gameData = useGetBoardGameData(
-    `${process.env.NEXT_PUBLIC_BASE_BGA}ids=${id}&order=rank&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
-    'detail',
-  );
+  const { data: game, isLoading } = useGetDetailGame(id);
+  const { push } = useRouter();
 
   useEffect(() => {
-    if (gameData.data) {
-      setTitle(gameData.data.games[0].name);
-      setGame(gameData.data.games[0]);
-    }
-  }, [gameData]);
+    setTimeout(function () {
+      if (typeof game == 'undefined') {
+        push('/404');
+      }
+    }, 3000);
+  }, []);
 
   return (
-    <Layout title={title} loading={!game}>
+    <Layout title={game?.name ? game.name : 'Detail game'} loading={isLoading}>
       {game! && <DetailGame game={game} />}
     </Layout>
   );
 };
 
 export async function getServerSideProps({ params }: GetServerSidePropsContext) {
-  if (!params) {
+  if (typeof params?.id === 'string') {
+    const queryClient = new QueryClient();
+    await prefetchDetailGame(queryClient, params.id);
+    await prefetchCategories(queryClient);
+    await prefetchMechanics(queryClient);
+    return {
+      props: {
+        dehydratedState: dehydrate(queryClient),
+        id: params.id,
+      },
+    };
+  } else {
     return {
       redirect: {
-        destination: '/401',
+        destination: '/404',
         permanent: false,
       },
     };
   }
-  return {
-    props: {
-      id: params.id,
-    },
-  };
 }
 
 export default SingleGame;

@@ -47,11 +47,11 @@ export const GeneralContainer = ({ game }: { game: BoardGameType }) => {
           </Box>
           <Box margin={'15px 0 0'}>
             <H2Title $bold>Category</H2Title>
-            {game?.categories && <TagFlex tags={game?.categories.map((category) => category.id as string)} />}
+            {game?.categories && <TagFlex tags={game?.categories.map((category) => category.id)} />}
           </Box>
           <Box margin={'15px 0'}>
-            <H2Title $bold>mechanics</H2Title>
-            {game?.mechanics && <TagFlex tags={game?.mechanics.map((mechanic) => mechanic.id as string)} />}
+            <H2Title $bold>Mechanics</H2Title>
+            {game?.mechanics && <TagFlex tags={game?.mechanics.map((mechanic) => mechanic.id)} />}
           </Box>
         </Flex>
       ) : (
@@ -68,8 +68,8 @@ export const GeneralContainer = ({ game }: { game: BoardGameType }) => {
               <H2Title $bold>Category</H2Title>
               {game?.categories && <TagFlex tags={game?.categories.map((category) => category.id as string)} />}
             </Box>
-            <Box margin={'0 0 0 25px'}>
-              <H2Title $bold>mechanics</H2Title>
+            <Box margin={'15px 0 0 25px'}>
+              <H2Title $bold>Mechanics</H2Title>
               {game?.mechanics && <TagFlex tags={game?.mechanics.map((mechanic) => mechanic.id as string)} />}
             </Box>
           </Box>

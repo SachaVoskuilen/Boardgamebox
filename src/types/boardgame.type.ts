@@ -4,7 +4,7 @@ export interface BoardGameType {
   id: string;
   handle?: string;
   url?: string;
-  name?: string;
+  name: string;
   year_published?: number;
   min_players?: number;
   max_players?: number;
