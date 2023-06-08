@@ -25,14 +25,14 @@ export const BasicBlock: FC<basicBlockType> = ({ basicInfo }) => {
       </StyledBasicBlock>
       <StyledBasicBlock>
         <Flex alignItems={'center'}>
-          <StyledText>{age ? age : '-'} +</StyledText>
+          <StyledText>{age || '-'} +</StyledText>
         </Flex>
         <Flex alignItems={'center'}>
           {players?.recPlayers ? (
             <StyledText>{players.recPlayers}</StyledText>
           ) : (
             <StyledText>
-              {players?.minPlayers ? players?.minPlayers : ' / '} - {players?.maxPlayers ? players?.maxPlayers : ' / '}
+              {players?.minPlayers || ' / '} - {players?.maxPlayers || ' / '}
             </StyledText>
           )}
         </Flex>
@@ -41,13 +41,12 @@ export const BasicBlock: FC<basicBlockType> = ({ basicInfo }) => {
             <StyledText>{duration.avgDuration}</StyledText>
           ) : (
             <StyledText>
-              {duration?.minDuration ? duration?.minDuration : ' / '} -
-              {duration?.maxDuration ? duration?.maxDuration : ' / '}
+              {duration?.minDuration || ' / '} -{duration?.maxDuration || ' / '}
             </StyledText>
           )}
         </Flex>
         <Flex alignItems={'center'}>
-          {weight && <StyledText>{(Math.round(weight * 100) / 100).toFixed(2)} / 5</StyledText>}
+          <StyledText>{weight ? `${(Math.round(weight * 100) / 100).toFixed(2)} / 5` : '-'}</StyledText>
         </Flex>
       </StyledBasicBlock>
     </Grid>

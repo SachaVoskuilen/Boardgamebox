@@ -51,7 +51,7 @@ export const InformationContainers: FC<GameProps> = ({ game }) => {
           <DetailContentButton name={'faq'} state={contentStates.faq} changeContent={showContent} />
           <DetailContentButton name={'production'} state={contentStates.production} changeContent={showContent} />
         </StyledDetailContentLargeNavigation>
-        {contentStates.general && <GeneralContainer game={game} />}
+        {contentStates.general && <GeneralContainer id={''} />}
         {contentStates.rating && <RatingContainer />}
         {contentStates.faq && <FaqContainer />}
         {contentStates.production && <ProductionContainer />}
@@ -61,7 +61,7 @@ export const InformationContainers: FC<GameProps> = ({ game }) => {
     return (
       <StyledDetailInformationContainerLayout>
         <DetailContentButton name={'general'} state={contentStates.general} changeContent={showContent} icon={true} />
-        {contentStates.general && <GeneralContainer game={game} />}
+        {contentStates.general && <GeneralContainer id={''} />}
         <DetailContentButton name={'rating'} state={contentStates.rating} changeContent={showContent} icon={true} />
         {contentStates.rating && <RatingContainer />}
         <DetailContentButton name={'faq'} state={contentStates.faq} changeContent={showContent} icon={true} />
