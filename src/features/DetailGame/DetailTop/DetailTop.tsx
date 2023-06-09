@@ -4,6 +4,7 @@ import { StyledDetailTop, StyledTopButton, StyledTopFlex } from '.';
 import { faChevronLeft, faWarehouse, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, FC } from 'react';
+import { usePostInteraction } from '@/hooks';
 
 type DetailTopType = {
   image: string;
@@ -15,17 +16,56 @@ export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
   const [collection, setCollection] = useState<boolean>(false);
   const [liked, setLike] = useState<boolean>(false);
 
+  const { mutate: addInteraction } = usePostInteraction();
+
   const returnIcon = <FontAwesomeIcon icon={faChevronLeft} />;
   const ownIcon = <FontAwesomeIcon icon={faWarehouse} />;
   const likeIcon = <FontAwesomeIcon icon={faHeart} />;
 
-  function updateCollection() {
-    setCollection(!collection);
-  }
+  const updateInteraction = (type: string) => {
+    switch (type) {
+      case 'own':
+        setCollection(!collection);
+        break;
+      case 'like':
+        const newLiked = !liked;
+        setLike(newLiked);
+        if (newLiked) {
+          addInteraction(
+            {
+              userId: 'clid8387p0000eh8kuael2kp5',
+              boardGameId: 'sdoif',
+              interactionTagId: 1,
+            },
+            {
+              onSuccess(data) {
+                console.log(data);
+              },
+              onError(error) {
+                console.log(error);
+              },
+            },
+          );
+        } else {
+          console.log('Should delete');
+        }
+        break;
+      default:
+        break;
+    }
+    // addInteraction({
+    //   ...data,
+    // });
+    // const update = usePostInteraction();
+  };
 
-  function updateLike() {
-    setLike(!liked);
-  }
+  // function updateCollection() {
+  //   setCollection(!collection);
+  // }
+
+  // function updateLike() {
+  //   setLike(!liked);
+  // }
 
   return (
     <StyledDetailTop>
@@ -37,13 +77,13 @@ export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
               {returnIcon}
             </Flex>
           </StyledTopButton>
-          <StyledTopButton onClick={updateCollection}>
+          <StyledTopButton onClick={() => updateInteraction('own')}>
             <Flex maxHeight={'30px'} width={'30px'} color={collection ? 'color5' : 'black'}>
               {ownIcon}
             </Flex>
             <H2Title $bold>Own</H2Title>
           </StyledTopButton>
-          <StyledTopButton onClick={updateLike}>
+          <StyledTopButton onClick={() => updateInteraction('like')}>
             <Flex maxHeight={'30px'} width={'30px'} color={liked ? 'red' : 'black'}>
               {likeIcon}
             </Flex>
