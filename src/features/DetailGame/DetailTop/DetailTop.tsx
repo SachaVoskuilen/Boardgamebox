@@ -4,25 +4,26 @@ import { StyledDetailTop, StyledTopButton, StyledTopFlex } from '.';
 import { faChevronLeft, faWarehouse, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, FC } from 'react';
-import { usePostInteraction } from '@/hooks';
+import { fetchApi } from '@/utils';
+import { InteractionType } from '@/types';
 
 type DetailTopType = {
+  id: string;
   image: string;
   name: string;
   description: string;
 };
 
-export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
+export const DetailTop: FC<DetailTopType> = ({ id, image, name, description }) => {
   const [collection, setCollection] = useState<boolean>(false);
   const [liked, setLike] = useState<boolean>(false);
-
-  const { mutate: addInteraction } = usePostInteraction();
+  const [loggedin, setLoggedin] = useState<boolean>(true);
 
   const returnIcon = <FontAwesomeIcon icon={faChevronLeft} />;
   const ownIcon = <FontAwesomeIcon icon={faWarehouse} />;
   const likeIcon = <FontAwesomeIcon icon={faHeart} />;
 
-  const updateInteraction = (type: string) => {
+  const updateInteraction = async (type: string) => {
     switch (type) {
       case 'own':
         setCollection(!collection);
@@ -31,21 +32,14 @@ export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
         const newLiked = !liked;
         setLike(newLiked);
         if (newLiked) {
-          addInteraction(
-            {
-              userId: 'clid8387p0000eh8kuael2kp5',
-              boardGameId: 'sdoif',
-              interactionTagId: 1,
-            },
-            {
-              onSuccess(data) {
-                console.log(data);
-              },
-              onError(error) {
-                console.log(error);
-              },
-            },
-          );
+          const succes = await updateInteractionFetch({
+            userId: '',
+            boardGameId: id,
+            interactionTagId: 1,
+          });
+          if (succes.message == 'Not logged in') {
+            setLoggedin(false);
+          }
         } else {
           console.log('Should delete');
         }
@@ -53,19 +47,7 @@ export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
       default:
         break;
     }
-    // addInteraction({
-    //   ...data,
-    // });
-    // const update = usePostInteraction();
   };
-
-  // function updateCollection() {
-  //   setCollection(!collection);
-  // }
-
-  // function updateLike() {
-  //   setLike(!liked);
-  // }
 
   return (
     <StyledDetailTop>
@@ -90,6 +72,11 @@ export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
             <H2Title $bold>Like</H2Title>
           </StyledTopButton>
         </StyledTopFlex>
+        {!loggedin && (
+          <Flex color={'red'} justifyContent={'center'} alignItems={'center'} height={'30px'}>
+            <StyledText>You can't edit, you're not loggedin</StyledText>
+          </Flex>
+        )}
       </Box>
       <Box>
         <H1Title $bold margin={'25px 0 0 0'}>
@@ -99,4 +86,12 @@ export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
       </Box>
     </StyledDetailTop>
   );
+};
+
+const updateInteractionFetch = async (interaction: InteractionType) => {
+  console.log({ addInteraction: interaction, url: `${window.origin}/api/interaction` });
+  return await fetchApi(`${window.origin}/api/interaction`, {
+    method: 'POST',
+    body: JSON.stringify(interaction),
+  });
 };

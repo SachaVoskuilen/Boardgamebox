@@ -10,6 +10,7 @@ export const DetailGame: FC<GameProps> = ({ game }) => {
   return (
     <StyledDetailGame>
       <DetailTop
+        id={game.id}
         image={
           game.image_url
             ? game.image_url

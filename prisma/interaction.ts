@@ -8,9 +8,7 @@ export const getAllInteractionsTags = async () => {
 
 export const addInteraction = async (newInteraction: InteractionType) => {
   const { userId, boardGameId, interactionTagId } = newInteraction;
-  const interaction = await prisma.userBoardGameInteraction.create({
+  return await prisma.userBoardGameInteraction.create({
     data: { userId: userId, boardGameId: boardGameId, interactionTagId: interactionTagId },
   });
-
-  return interaction;
 };
