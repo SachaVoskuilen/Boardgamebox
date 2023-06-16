@@ -12,7 +12,7 @@ type DetailTopType = {
   description: string;
 };
 
-export const DetailTop: FC<DetailTopType> = ({ id, image, name, description }) => {
+export const DetailTop: FC<DetailTopType> = ({ image, name, description }) => {
   const [collection, setCollection] = useState<boolean>(false);
   const [liked, setLike] = useState<boolean>(false);
   const [loggedin, setLoggedin] = useState<boolean>(true);
@@ -59,7 +59,7 @@ export const DetailTop: FC<DetailTopType> = ({ id, image, name, description }) =
         </StyledTopFlex>
         {!loggedin && (
           <Flex color={'red'} justifyContent={'center'} alignItems={'center'} height={'30px'}>
-            <StyledText>You can't edit, you're not loggedin</StyledText>
+            <StyledText>You can&apos;t edit, you&apos;re not loggedin</StyledText>
           </Flex>
         )}
       </Box>
