@@ -3,7 +3,9 @@ import { QueryClient, useQuery } from '@tanstack/react-query';
 import { fetchApi } from 'utils';
 
 async function fetchBoardGameData(url: string) {
-  return await fetchApi(url);
+  return await fetchApi(url).then((data) => {
+    return data.games;
+  });
 }
 
 export function useGetBoardGames(url: string, name: string) {

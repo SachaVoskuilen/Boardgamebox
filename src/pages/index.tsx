@@ -14,26 +14,21 @@ const Home: NextPage = () => {
     'rank',
   );
   const popularData = useGetBoardGames(
-    `${process.env.NEXT_PUBLIC_BASE_BGA}/search?limit=3&order=popular&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
+    `${process.env.NEXT_PUBLIC_BASE_BGA}/search?limit=10&skip=10&order=popular&pretty=true&client_id=${process.env.NEXT_PUBLIC_API_KEY}`,
     'popular',
   );
 
   useEffect(() => {
     if (rankedData.data) {
-      setRanked(rankedData.data.games);
+      setRanked(rankedData.data);
     }
     if (popularData.data) {
-      setPopular(popularData.data.games);
+      setPopular(popularData.data);
     }
   }, [rankedData, popularData]);
 
   return (
     <Layout loading={rankedData.isLoading && popularData.isLoading} title="Home">
-      {process.env.NEXT_PUBLIC_ISINDEVELOPMENT == 'true' && (
-        <H1Title $bold $line>
-          Quick menu
-        </H1Title>
-      )}
       <H1Title $bold $line>
         Ranked
       </H1Title>

@@ -3,7 +3,7 @@ import { authOptions } from '@/server/auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 
-export default async function handle(req: any, res: NextApiResponse) {
+export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions);
 
   if (session) {
@@ -15,7 +15,7 @@ export default async function handle(req: any, res: NextApiResponse) {
         }
         case 'POST': {
           let newInteraction = await JSON.parse(req.body);
-          // newInteraction.userId = session.user.id;
+          newInteraction.userId = session.user.id;
           const response = await addInteraction(newInteraction);
           return res.status(200).json(response);
         }
