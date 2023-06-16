@@ -32,16 +32,29 @@ export const DetailTop: FC<DetailTopType> = ({ id, image, name, description }) =
         const newLiked = !liked;
         setLike(newLiked);
         if (newLiked) {
-          const succes = await updateInteractionFetch({
-            userId: '',
-            boardGameId: id,
-            interactionTagId: 1,
-          });
+          const succes = await updateInteractionFetch(
+            {
+              userId: '',
+              boardGameId: id,
+              interactionTagId: 1,
+            },
+            'POST',
+          );
           if (succes.message == 'Not logged in') {
             setLoggedin(false);
           }
         } else {
-          console.log('Should delete');
+          const succes = await updateInteractionFetch(
+            {
+              userId: '',
+              boardGameId: id,
+              interactionTagId: 1,
+            },
+            'DELETE',
+          );
+          if (succes.message == 'Not logged in') {
+            setLoggedin(false);
+          }
         }
         break;
       default:
@@ -88,10 +101,9 @@ export const DetailTop: FC<DetailTopType> = ({ id, image, name, description }) =
   );
 };
 
-const updateInteractionFetch = async (interaction: InteractionType) => {
-  console.log({ addInteraction: interaction, url: `${window.origin}/api/interaction` });
-  return await fetchApi(`${window.origin}/api/interaction`, {
-    method: 'POST',
+const updateInteractionFetch = async (interaction: InteractionType, updateMethod: string) => {
+  return await fetchApi(`http://localhost:3000/api/interaction`, {
+    method: updateMethod,
     body: JSON.stringify(interaction),
   });
 };

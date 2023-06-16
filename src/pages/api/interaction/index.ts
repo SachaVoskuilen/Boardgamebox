@@ -1,9 +1,9 @@
-import { addInteraction } from '@/../prisma/interaction';
+import { addInteraction, deleteInteraction } from '@/../prisma/interaction';
 import { authOptions } from '@/server/auth';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 
-export default async function handle(req: NextApiRequest, res: NextApiResponse) {
+export default async function handle(req: any, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions);
 
   if (session) {
@@ -11,19 +11,23 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       switch (req.method) {
         case 'GET': {
           const response = 'Cant get interactions for security reasons!';
-          return res.json(response);
+          return res.status(200).json(response);
         }
         case 'POST': {
           let newInteraction = await JSON.parse(req.body);
-          newInteraction.userId = session.user.id;
+          // newInteraction.userId = session.user.id;
           const response = await addInteraction(newInteraction);
-          return res.json(response);
+          return res.status(200).json(response);
         }
-        // case 'DELETE': {
-        //   const deleteInteraction = req.body;
-        //   const response = await deleteI nteraction(req.body);
-        //   return res.json(response);
-        // }
+        case 'DELETE': {
+          const newDeleteInteraction = JSON.parse(req.body);
+          console.log('api delete', newDeleteInteraction);
+          // return res.status(200).json({ message: 'delete should work' });
+          newDeleteInteraction.userId = session.user.id;
+          // console.log(newDeleteInteraction);
+          const response = await deleteInteraction(newDeleteInteraction);
+          return res.status(200).json(response);
+        }
       }
     } catch (error: any) {
       return res.status(500).json({ ...error, message: error.message });
