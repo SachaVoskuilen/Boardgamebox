@@ -17,6 +17,7 @@ export const NavigationStyle = styled(Flex)<NavigationStyleType>`
         justify-content: space-between;
         align-items: center;
 
+        
         > * {
           display: flex;
           height: 100%;
@@ -24,7 +25,6 @@ export const NavigationStyle = styled(Flex)<NavigationStyleType>`
           flex: 1;
           justify-content: center;
           align-items: center;
-
           box-shadow: inset 0 0 1px 0;
         }
       `,
@@ -46,7 +46,6 @@ export const NavigationStyle = styled(Flex)<NavigationStyleType>`
             align-items: center;
             height: 100%;
             width: 100px;
-            box-shadow: inset 0 0 1px 0;
           }
         }
 
@@ -56,7 +55,6 @@ export const NavigationStyle = styled(Flex)<NavigationStyleType>`
           align-items: center;
           height: 100%;
           width: 100px;
-          box-shadow: inset 0 0 1px 0;
         }
     `,
     }[variant])}

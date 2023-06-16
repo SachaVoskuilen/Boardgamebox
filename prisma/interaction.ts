@@ -14,7 +14,6 @@ export const addInteraction = async (newInteraction: InteractionType) => {
 };
 
 export const deleteInteraction = async (newDeleteInteraction: InteractionType) => {
-  console.log('prisma delete', newDeleteInteraction);
   const { userId, boardGameId, interactionTagId } = newDeleteInteraction;
 
   // await prisma.userBoardGameInteraction.findMany({

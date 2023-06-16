@@ -4,8 +4,6 @@ import { StyledDetailTop, StyledTopButton, StyledTopFlex } from '.';
 import { faChevronLeft, faWarehouse, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, FC } from 'react';
-import { fetchApi } from '@/utils';
-import { InteractionType } from '@/types';
 
 type DetailTopType = {
   id: string;
@@ -29,33 +27,7 @@ export const DetailTop: FC<DetailTopType> = ({ id, image, name, description }) =
         setCollection(!collection);
         break;
       case 'like':
-        const newLiked = !liked;
-        setLike(newLiked);
-        if (newLiked) {
-          const succes = await updateInteractionFetch(
-            {
-              userId: '',
-              boardGameId: id,
-              interactionTagId: 1,
-            },
-            'POST',
-          );
-          if (succes.message == 'Not logged in') {
-            setLoggedin(false);
-          }
-        } else {
-          const succes = await updateInteractionFetch(
-            {
-              userId: '',
-              boardGameId: id,
-              interactionTagId: 1,
-            },
-            'DELETE',
-          );
-          if (succes.message == 'Not logged in') {
-            setLoggedin(false);
-          }
-        }
+        setLike(!liked);
         break;
       default:
         break;
@@ -99,11 +71,4 @@ export const DetailTop: FC<DetailTopType> = ({ id, image, name, description }) =
       </Box>
     </StyledDetailTop>
   );
-};
-
-const updateInteractionFetch = async (interaction: InteractionType, updateMethod: string) => {
-  return await fetchApi(`http://localhost:3000/api/interaction`, {
-    method: updateMethod,
-    body: JSON.stringify(interaction),
-  });
 };

@@ -29,9 +29,11 @@ const Home: NextPage = () => {
 
   return (
     <Layout loading={rankedData.isLoading && popularData.isLoading} title="Home">
-      <H1Title $bold $line>
-        Quick menu
-      </H1Title>
+      {process.env.NEXT_PUBLIC_ISINDEVELOPMENT == 'true' && (
+        <H1Title $bold $line>
+          Quick menu
+        </H1Title>
+      )}
       <H1Title $bold $line>
         Ranked
       </H1Title>

@@ -22,7 +22,7 @@ const MyApp: AppType<{ dehydratedState: DehydratedState; session: Session | null
           <Hydrate state={pageProps.dehydratedState}>
             <GlobalStyle />
             <Component {...pageProps} />
-            <ReactQueryDevtools initialIsOpen={false} />
+            {process.env.NEXT_PUBLIC_ISINDEVELOPMENT == 'true' && <ReactQueryDevtools initialIsOpen={false} />}
           </Hydrate>
         </QueryClientProvider>
       </SessionProvider>

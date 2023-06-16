@@ -74,8 +74,6 @@ export const GeneralContainer = ({ id }: { id: string }) => {
             const idSet = new Set<string>(existingIds.map((obj) => obj.id));
             const overlappingObjects: CategoryType[] | MechanicType[] = [];
 
-            console.log(compareObjects);
-
             for (const obj of compareObjects) {
               if (idSet.has(obj.id)) {
                 const { id, name } = obj;

@@ -21,10 +21,8 @@ export default async function handle(req: any, res: NextApiResponse) {
         }
         case 'DELETE': {
           const newDeleteInteraction = JSON.parse(req.body);
-          console.log('api delete', newDeleteInteraction);
           // return res.status(200).json({ message: 'delete should work' });
           newDeleteInteraction.userId = session.user.id;
-          // console.log(newDeleteInteraction);
           const response = await deleteInteraction(newDeleteInteraction);
           return res.status(200).json(response);
         }
