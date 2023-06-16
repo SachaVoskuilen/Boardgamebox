@@ -42,7 +42,7 @@ export const DefaultTheme: StartTheme = {
     color1: '#FFEA00',
 
     primaryBackgroundColor: '#ffffff',
-    secondaryBackgroundColor: '#fff9ee',
+    secondaryBackgroundColor: '#ffffff',
   },
 };
 

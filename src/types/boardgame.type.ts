@@ -1,16 +1,16 @@
-import { CategoryType, ImagesType, MarkerType, MechanicType, ProductionType, QuestionType, RatingType } from '.';
+import { CategoryType, ImagesType, MechanicType, ProductionType } from '.';
 
 export interface BoardGameType {
   id: string;
   handle?: string;
   url?: string;
-  name?: string;
+  name: string;
   year_published?: number;
   min_players?: number;
   max_players?: number;
   min_playtime?: number;
   max_playtime?: number;
-  minAge?: number;
+  min_age?: number;
   description?: string;
   thumb_url?: string;
   image_url?: string;

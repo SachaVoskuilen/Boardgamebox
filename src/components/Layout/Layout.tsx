@@ -1,16 +1,10 @@
 import { defaultBreakingPoints } from '@/styles';
 import Head from 'next/head';
 import { FC, useEffect, useState } from 'react';
-import {
-  Scrollable,
-  GridContentStyle,
-  GridHamburgerStyle,
-  GridNavigationStyle,
-  StyledLayout,
-  StyledMain,
-  windowSizeType,
-} from '.';
-import { HamburgerMenu, Navigation } from '../Navigation';
+import { Scrollable, GridContentStyle, GridHamburgerStyle, GridNavigationStyle, StyledLayout, StyledMain } from '.';
+import { Navigation } from './Navigation';
+import { HamburgerMenu } from './Hamburger';
+import { useWindowState } from '@/hooks';
 
 type Props = {
   title?: string;
@@ -21,15 +15,23 @@ type Props = {
 export const Layout: FC<Props> = ({ title, children, loading }) => {
   const [menu, setMenu] = useState<string>('default');
 
-  const [windowSize, setWindowSize] = useState<windowSizeType>({ height: 100, width: 100 });
+  const { windowSize, updateWindow } = useWindowState();
 
   useEffect(() => {
     // On mount
-    setWindowSize({ height: window.innerHeight, width: window.innerWidth });
+    updateWindow({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      orientation: window.innerWidth > window.innerHeight ? 'horizontal' : 'vertical',
+    });
 
     // Watch
     const handleWindowResize = () => {
-      setWindowSize({ height: window.innerHeight, width: window.innerWidth });
+      updateWindow({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        orientation: window.innerWidth > window.innerHeight ? 'horizontal' : 'vertical',
+      });
     };
     window.addEventListener('resize', handleWindowResize);
     return () => {
@@ -48,14 +50,14 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Dosis:wght@600&family=Nunito&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600&family=Nunito&display=swap"
         />
       </Head>
       <StyledMain windowSize={windowSize}>
         {windowSize.width >= defaultBreakingPoints.laptop ? (
           <StyledLayout variant={menu}>
             <GridNavigationStyle>
-              <Navigation menu={menu} setMenu={setMenu} windowSize={windowSize} />
+              <Navigation menu={menu} setMenu={setMenu} />
             </GridNavigationStyle>
             {menu != 'default' && (
               <GridHamburgerStyle>
@@ -69,7 +71,7 @@ export const Layout: FC<Props> = ({ title, children, loading }) => {
         ) : (
           <StyledLayout variant={menu}>
             <GridNavigationStyle>
-              <Navigation menu={menu} setMenu={setMenu} windowSize={windowSize} />
+              <Navigation menu={menu} setMenu={setMenu} />
             </GridNavigationStyle>
             {menu != 'default' ? (
               <GridHamburgerStyle>

@@ -1,3 +1,4 @@
+import { WindowStateType } from '@/types';
 import styled from 'styled-components';
 import type {
   BorderProps,
@@ -9,7 +10,6 @@ import type {
   ShadowProps,
 } from 'styled-system';
 import { border, color, space, layout, background, position, shadow } from 'styled-system';
-import { windowSizeType } from './windowSize.type';
 
 export interface MainProps
   extends ColorProps,
@@ -19,7 +19,7 @@ export interface MainProps
     PositionProps,
     ShadowProps,
     BorderProps {
-  windowSize: windowSizeType;
+  windowSize: WindowStateType['windowSize'];
 }
 
 export const StyledMain = styled.main<MainProps>`

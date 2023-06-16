@@ -24,6 +24,7 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string(),
     NEXT_PUBLIC_API_KEY: z.string(),
     NEXT_PUBLIC_BASE_BGA: z.string(),
+    NEXT_PUBLIC_ISINDEVELOPMENT: z.string(),
   },
 
   /**
@@ -50,5 +51,6 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     NEXT_PUBLIC_API_KEY: process.env.NEXT_PUBLIC_API_KEY,
     NEXT_PUBLIC_BASE_BGA: process.env.NEXT_PUBLIC_BASE_BGA,
+    NEXT_PUBLIC_ISINDEVELOPMENT: process.env.NEXT_PUBLIC_ISINDEVELOPMENT,
   },
 });

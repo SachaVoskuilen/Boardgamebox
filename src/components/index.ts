@@ -1,3 +1,5 @@
-export * from './GamesFlex';
+export * from './GamesGrid';
 export * from './Layout';
-export * from './SimpleGame';
+export * from './Selector';
+export * from './Tag';
+export * from './TagFlex';
